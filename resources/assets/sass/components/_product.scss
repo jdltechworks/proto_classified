@@ -1,0 +1,22 @@
+.product {
+  &-list {
+    position: relative;
+    margin-bottom: 2em;
+    &:before {
+      content: "";
+      width: 90%;
+      margin: auto;
+      border: 1px solid #ccc;
+      background: #fff;
+      height: 100%;
+      position: absolute;
+      z-index: -999999;
+    }
+  }
+  &--show {
+    &-footer {
+      background: #fff;
+      padding: 0 2% 2%;
+    }
+  }
+}

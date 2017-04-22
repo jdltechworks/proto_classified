@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ProductsTableSeeder extends Seeder
+class CommentsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(App\Product::class, 500)->create();
+        factory(App\Comment::class, 1000)->create();
     }
 }

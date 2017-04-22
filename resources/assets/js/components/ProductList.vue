@@ -6,7 +6,6 @@
             <div class="clearfix item">
                 <img src="https://dummyimage.com/220X135.97/000/fff" class="img-responsive"/>
                 <a v-bind:href="productUrl + product.slug">{{product.title}}</a>
-                
             </div>                
         </div>
     </div>
@@ -31,6 +30,7 @@
             }
         },
         mounted() {
+            console.log(this.products)
         }
     }
 </script>

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+  {{ $title }}
+@endsection
+
 @section('content')
     <div id="app">
         <product-menu></product-menu>

@@ -24,19 +24,27 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Product::class, function (Faker\Generator $faker) {
+    
     return [
         'title' => $faker->words(3, true),
-        'description' => $faker->text,
-        'price' => $faker->randomFloat    
+        'description' => $faker->realText,
+        'price' => $faker->randomFloat,
+        'user_id' => function() {
+            return rand(1, App\User::count());
+        }
     ];
 });
 
 $factory->define(App\Comment::class, function(Faker\Generator $faker) {
+    
     return [
         'title' => $faker->words(3, true),
-        'body' => $faker->text,
+        'body' => $faker->realText,
+        'user_id' => function() {
+            return rand(1, App\User::count());
+        },
         'product_id' => function() {
-            return 2;
+            return rand(1, App\Product::count());
         }
     ];
 });

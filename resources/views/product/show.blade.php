@@ -16,6 +16,7 @@
                         <small>Php {{ number_format($product->price, 2) }}</small>
                     </div>
                     <div class="product--show-user">{{ $product->user->name }}</div>
+                    <p>{{$product->description}}</p>
                     <div>100000 views</div>
                     
                 </div>

@@ -8,7 +8,7 @@
     <div class="col-md-8">
         <div class="row">
             <div class="product--show">
-                <img src="https://dummyimage.com/890x350/000/fff" class="img-responsive" />
+                <img src="https://dummyimage.com/1024x384/000/fff" class="img-responsive" />
                 <div class="product--show-footer clearfix">
                     <div class="product--show-title">
                         <h1>{{ $product->title }}</h1>
@@ -22,16 +22,14 @@
             </div>
         <div class="comment">
             <div class="comment-header">
-                COMMENTS 1231231
-                
-                
+                COMMENTS 1231231   
             </div>
             <div class="comment--form">
                 <div class="form-group">
-                    <textarea class="form-control"></textarea>
+                    <textarea wrap="off" class="form-control"></textarea>
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-default ml-auto">add comment</button>
+                <div class="form-group text-right">
+                    <button class="btn btn-block btn-default ml-auto">add comment</button>
                 </div>
             </div>
                 @foreach($product->comments as $comment)
@@ -50,7 +48,11 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div>You may also like</div>    
+        <div class="">
+            <div class="">
+                You might also like
+            </div>
+        </div>    
     </div>
         
     <div id="app">

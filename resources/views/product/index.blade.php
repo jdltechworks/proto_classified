@@ -2,6 +2,7 @@
 
 @section('content')
     <div id="app">
+        <product-menu></product-menu>
         <product-list :products="{{$products}}"></product-list>
     </div>
 @endsection

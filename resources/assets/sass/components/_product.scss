@@ -1,16 +1,16 @@
 .product {
   &-list {
-    position: relative;
-    margin-bottom: 2em;
-    &:before {
-      content: "";
-      width: 90%;
-      margin: auto;
-      border: 1px solid #ccc;
-      background: #fff;
-      height: 100%;
-      position: absolute;
-      z-index: -999999;
+    &-product {
+      position: relative;
+      margin-bottom: 2em;
+      &:before {
+        content: "";
+        margin: auto;
+        background: #fff;
+        height: 100%;
+        position: absolute;
+        z-index: -999999;
+      }
     }
   }
   &--show {

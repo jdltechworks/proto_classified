@@ -9,6 +9,7 @@ require('./bootstrap');
 
 import Vue from 'vue'
 import ProductList from './components/ProductList'
+import ProductMenu from './components/ProductMenu'
 import Clients from './components/passport/Clients'
 import AuthorizedClients from './components/passport/AuthorizedClients'
 import PersonalAccessTokens from './components/passport/PersonalAccessTokens'
@@ -23,7 +24,8 @@ require('./bootstrap');
 
 const app = new Vue({
   components: { 
-    ProductList, 
+    ProductList,
+    ProductMenu,
     AuthorizedClients, 
     Clients, 
     PersonalAccessTokens }

@@ -1,19 +1,19 @@
 <template>
-    <div class="col-lg-8">
-    <div class="row" v-for="row in groupedProducts">
+    <div class="col-md-9">
+    <div class="row  product-list" v-for="row in groupedProducts">
         
-        <div class="col-md-3 product-list" v-for="product in row">
+        <div class="col-md-3 product-list-product" v-for="product in row">
             <div class="clearfix item">
-                <img src="https://dummyimage.com/193x100/000/fff" class="img-responsive"/>
-                <div class="caption">
-                    <a v-bind:href="productUrl + product.slug">{{product.title}}</a>
-                </div>
+                <img src="https://dummyimage.com/220X135.97/000/fff" class="img-responsive"/>
+                <a v-bind:href="productUrl + product.slug">{{product.title}}</a>
+                
             </div>                
         </div>
     </div>
     </div>
 </template>
 <script>
+    import moment from 'moment'
     export default {
         name: 'products-list',
         props: {

@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('user')->get();
+        $products = Product::with('user')->latest()->get();
         return view('product.index', compact('products'));
     }
 

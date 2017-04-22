@@ -1,9 +1,9 @@
 
 // Body
-$body-bg: #f6f6f6;
+$body-bg: #fff;
 
 // Borders
-$laravel-border-color: darken($body-bg, 10%);
+$laravel-border-color: darken($body-bg, 1%);
 $list-group-border: $laravel-border-color;
 $navbar-default-border: $laravel-border-color;
 $panel-default-border: $laravel-border-color;
@@ -36,3 +36,8 @@ $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
 $panel-default-heading-bg: #fff;
+
+
+$border-radius-base:        0px;
+$border-radius-large:       0px;
+$border-radius-small:       0px;

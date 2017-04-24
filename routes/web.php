@@ -11,12 +11,16 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('index');
 });
 
 
 Route::resource('product', 'ProductController');
-Auth::routes();
+
+
+Route::resource('/upload', 'UploadController');
 
 Route::get('/home', 'HomeController@index');

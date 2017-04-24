@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Category;
+
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -17,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('user')->latest()->take(24)->get();
+        $products = Product::with(['user', 'categories'])->latest()->take(24)->get();
         $title = 'Products';
         return view('product.index', compact('products', 'title'));
     }
@@ -50,8 +52,13 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Product $product)
-    {    
-        return view('product.show', compact('product'));
+    {   
+
+        $categories = $product->categories->modelKeys();
+        $related = $product->whereHas('categories', function ($query) use ($categories) {
+            $query->whereIn('categories.id', $categories);
+        })->where('id', '<>', $product->id)->latest()->take(5)->get();
+        return view('product.show', compact('product', 'related'));
     }
 
     /**

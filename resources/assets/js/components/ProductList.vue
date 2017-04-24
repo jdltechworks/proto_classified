@@ -4,7 +4,7 @@
         
         <div class="col-md-3 product-list-product" v-for="product in row">
             <div class="clearfix item">
-                <img src="https://dummyimage.com/220X135.97/000/fff" class="img-responsive"/>
+                <img src="https://dummyimage.com/250X154.51/000/fff" class="img-responsive"/>
                 <a v-bind:href="productUrl + product.slug">{{product.title}}</a>
             </div>                
         </div>

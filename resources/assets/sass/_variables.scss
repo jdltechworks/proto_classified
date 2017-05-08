@@ -13,7 +13,7 @@ $panel-inner-border: $laravel-border-color;
 $brand-primary: #3097D1;
 $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
-$brand-warning: #cbb956;
+$brand-warning: rgba(246, 187, 66, 1);
 $brand-danger: #bf5329;
 
 // Typography
@@ -41,3 +41,7 @@ $panel-default-heading-bg: #fff;
 $border-radius-base:        0px;
 $border-radius-large:       0px;
 $border-radius-small:       0px;
+
+$navbar-inverse-bg:         rgba(59, 175, 218, 1);
+$navbar-inverse-link-color: #fff;
+$navbar-inverse-link-hover-color: lighten($navbar-inverse-bg, 15%) !default;

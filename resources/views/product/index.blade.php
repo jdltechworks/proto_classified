@@ -5,10 +5,11 @@
 @endsection
 
 @section('content')
-
-    <div id="app">
-        <product-menu></product-menu>
-        <product-list :products="{{$products}}"></product-list>
+    <div class="container-fluid">
+        <div id="app" class="product">
+            <product-menu></product-menu>
+            <product-list :products="{{$products}}"></product-list>
+        </div>
     </div>
 @endsection
 

@@ -13,8 +13,11 @@ import ProductMenu from './components/ProductMenu'
 import Clients from './components/passport/Clients'
 import AuthorizedClients from './components/passport/AuthorizedClients'
 import PersonalAccessTokens from './components/passport/PersonalAccessTokens'
+import VueQuillEditor from 'vue-quill-editor'
+import Editor from './components/Editor'
+import Upload from './components/Upload'
+Vue.use(VueQuillEditor)
 
-require('./bootstrap');
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -23,9 +26,11 @@ require('./bootstrap');
 
 
 const app = new Vue({
-  components: { 
+  components: {
+    Editor,
     ProductList,
     ProductMenu,
+    Upload,
     AuthorizedClients, 
     Clients, 
     PersonalAccessTokens }

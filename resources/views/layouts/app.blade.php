@@ -23,10 +23,7 @@
 <body>
     <div class="app-wrapper">      
         @include('layouts.nav')
-        <div class="container-fluid">
-            @yield('content')    
-        </div>
-        
+        @yield('content')    
     </div>
     @yield('scripts')
 </body>

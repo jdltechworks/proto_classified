@@ -1,44 +1,38 @@
 <template>
     <div class="container-fluid">
       <div class="row">
-        <div id="droppable" class="upload col-md-12" v-model="image">
-            <span>Drop your files here</span>
+        <div @dragover.prevent @drop="onDrop" class="upload col-md-12">
           <span class="glyphicon glyphicon-camera"></span>
         </div>
       </div>
-      <div class="row">
-          <div class="col-lg-12 previews dropzone-previews">
-          </div>
+      <div v-if="thumbnails.length !== 0" class="row">
+          <ul>
+              <li v-for="thumbnail in thumbnails">
+                <img :src="thumbnail" width="75" height="75" />
+              </li>
+          </ul>
       </div>
     </div>    
 </template>
 
 <script>
-    import Dropzone from 'dropzone'
+    import _ from 'lodash'
     export default {
         name: 'upload',
-        data() {
+        data () {
             return {
-                image: ''
+                thumbnails: [],
             }
         },
-        mounted() {
-            new Dropzone('#droppable', { 
-                url: '/file/post',
-                paramName: 'file',
-                maxFileSize: 2,
-                accept: (file, done) => {
-
-                },
-                acceptedFiles: 'image/png,image/jpeg',
-                clickable: true,
-                previewsContainer: '.previews',
-                addRemoveLink: true,
-                previewTemplate: document.getElementById('preview-template').innerHTML,
-                addedFile: (file) => {
-                    file.previewElement = Dropzone.createElement(this.options.previewTemplate)
-                }
-            })
+        methods: {
+            onDrop (e) {
+                e.preventDefault()
+                e.stopPropagation()
+                let files = e.dataTransfer.files
+                _.map(files, (file, key) => {
+                    this.thumbnails.push(window.URL.createObjectURL(file))
+                })
+            }
         }
     }
 </script>

@@ -1,8 +1,9 @@
 <template>
     <div class="container-fluid">
       <div class="row">
-        <div @dragover.prevent class="upload col-md-12" @drop="onDrop">
+        <div @dragover.prevent @click="onClick" class="upload col-md-12" @drop="upload">
           <span class="glyphicon glyphicon-camera"></span>
+          <input @change="upload" type="file" multiple>
         </div>
       </div>
       <div v-if="thumbnails.length !== 0" class="row">
@@ -23,15 +24,26 @@
         name: 'upload',
         data() {
             return {
-                thumbnails: []
+                thumbnails: [],
+                images: []
             }
         },
         methods: {
-            onDrop (e) {
-                e.preventDefault()
+            onClick(e) {
                 e.stopPropagation()
-                const files = e.dataTransfer.files
-                console.log(files)
+                const { currentTarget: { lastChild} } = e
+                lastChild.click()
+            },
+            /**
+             * Naming this upload is the most relevant name of the function
+             * 
+             * @todo  complete upload using fetch api or equivalent technology
+             * @param  {object} element properties
+             * @return {object} Url and additional details the image upload
+             */
+            upload (e) {
+                e.preventDefault()
+                const files = e.target.files || e.dataTransfer.files
                 _.map(files, (file, key) => {
                     this.thumbnails.push(window.URL.createObjectURL(file))
                 })

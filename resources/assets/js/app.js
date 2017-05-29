@@ -14,8 +14,9 @@ import Clients from './components/passport/Clients'
 import AuthorizedClients from './components/passport/AuthorizedClients'
 import PersonalAccessTokens from './components/passport/PersonalAccessTokens'
 import VueQuillEditor from 'vue-quill-editor'
-import Editor from './components/Editor'
-import Upload from './components/Upload'
+
+import ProductCreate from './components/ProductCreate'
+
 Vue.use(VueQuillEditor)
 
 /**
@@ -27,10 +28,9 @@ Vue.use(VueQuillEditor)
 
 const app = new Vue({
   components: {
-    Editor,
+  	ProductCreate,
     ProductList,
     ProductMenu,
-    Upload,
     AuthorizedClients, 
     Clients, 
     PersonalAccessTokens }

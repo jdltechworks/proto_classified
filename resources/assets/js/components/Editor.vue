@@ -1,5 +1,5 @@
 <template>
-    <quill-editor v-model="content"
+    <quill-editor
         :options="editorRules"
         @blur="onBlur($event)"
         @focus="onFocus($event)"
@@ -11,6 +11,10 @@
 <script>
     export default {
         name: 'editor',
+        props: {
+            title: String,
+            description: String
+        },
         data() {
             return {
                 content: '',
@@ -38,7 +42,7 @@
             onReady({ editor, html, text}) {
             },
             onChange({ editor, html, text}) {
-                this.content = html
+                this.$emit('get-text', text)
             }
         }
     }

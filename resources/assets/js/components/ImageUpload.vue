@@ -6,11 +6,11 @@
           <input @change="upload" type="file" multiple>
         </div>
       </div>
-      <div v-if="thumbnails.length !== 0" class="row">
+      <div v-if="images.length !== 0" class="row">
           <div class="col-lg-12">
             <ul class="list-inline">
-                <li v-for="thumbnail in thumbnails">
-                    <img width="65" height="65" :src="thumbnail" />
+                <li v-for="image in images">
+                    <img width="65" height="65" :src="image" />
                 </li>
             </ul>
           </div>
@@ -21,12 +21,9 @@
 <script>
     import _ from 'lodash'
     export default {
-        name: 'upload',
-        data() {
-            return {
-                thumbnails: [],
-                images: []
-            }
+        name: 'image-upload',
+        props: {
+          images: Array
         },
         methods: {
             onClick(e) {
@@ -45,7 +42,7 @@
                 e.preventDefault()
                 const files = e.target.files || e.dataTransfer.files
                 _.map(files, (file, key) => {
-                    this.thumbnails.push(window.URL.createObjectURL(file))
+                    this.images.push(window.URL.createObjectURL(file))
                 })
             }
         }

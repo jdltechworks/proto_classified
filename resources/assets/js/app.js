@@ -28,7 +28,7 @@ Vue.use(VueQuillEditor)
 
 const app = new Vue({
   components: {
-  	ProductCreate,
+    ProductCreate,
     ProductList,
     ProductMenu,
     AuthorizedClients, 

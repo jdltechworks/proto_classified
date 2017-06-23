@@ -16,6 +16,8 @@ $brand-success: #2ab27b;
 $brand-warning: rgba(246, 187, 66, 1);
 $brand-danger: #bf5329;
 
+$brand-white: #fff;
+
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $font-family-sans-serif: "Roboto", sans-serif;
@@ -45,3 +47,6 @@ $border-radius-small:       0px;
 $navbar-inverse-bg:         rgba(59, 175, 218, 1);
 $navbar-inverse-link-color: #fff;
 $navbar-inverse-link-hover-color: lighten($navbar-inverse-bg, 15%) !default;
+
+//== Grid system
+$grid-gutter-width-base:     30px !default;

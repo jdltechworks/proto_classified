@@ -15,7 +15,6 @@ authorize:
 	sudo chmod -R 777 ./bootstrap/
 	composer dump-autoload
 	php artisan cache:clear
-	php artisan storage:link
 
 run:
 	php artisan serve &

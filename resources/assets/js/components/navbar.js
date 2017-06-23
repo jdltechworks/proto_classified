@@ -2,71 +2,49 @@ import React, { Component } from 'react';
 
 export default class Navheader extends Component {
 
+    render() {
+        return (
+            <div>
+                <nav className="navbar navbar-toggleable-md navbar-light bg-primary first-layer">
+                    <div className="container">
+                        <ul className="list-inline mr-auto">
+                            <li className="list-inline-item"><a href="#">Login</a></li>
+                            <li className="list-inline-item"><a href="#" className="ml-sm-3">Register</a></li>
+                        </ul>
+                        <ul className="float-right list-inline mt-2 mt-md-0">
+                            <li className="list-inline-item">a</li>
+                            <li className="list-inline-item">a</li>
+                        </ul>
+                    </div>
+                </nav>
+                <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+                    <div className="container">
+                        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                          <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <a className="navbar-brand" href="#">Brand</a>
 
-   handleClick = (e) => {
-
-   };
-
-  render() {
-    return (
-        <nav className="navbar navbar-default navbar-fixed-top">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <a className="navbar-brand" href="#">
-                Brand
-              </a>
+                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul className="navbar-nav mr-auto">
+                                <li className="nav-item active">
+                                    <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">Link</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link disabled" href="#">Disabled</a>
+                                </li>
+                            </ul>
+                            <form className="form-inline my-2 my-lg-0">
+                                <input className="form-control mr-sm-2" type="text" placeholder="Search" />
+                                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                      </div>
+                    </div>
+                </nav>
             </div>
-
-            <form className="navbar-form navbar-left" role="search">
-              <div className="form-group">
-                <div className="input-group">
-                  <div className="input-group-addon"><i className="fa fa-search"></i></div>
-                  <input type="text" className="form-control" id="exampleInputAmount" placeholder="Place" />
-                </div>
-              </div>
-
-              <div className="btn-group">
-                <button type="button" className="no-radius btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span className="fa fa-calendar"></span> Anytime
-                </button>
-                <ul className="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" className="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </div>
-              <div className="btn-group ">
-                <button type="button" className="text-left btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span className="fa fa-group"></span> 1 Guest
-                </button>
-                <ul className="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" className="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </div>
-            </form>
-
-            <ul className="nav navbar-nav navbar-right">
-              <li><a href="#">Become a Host</a></li>
-              <li><a href="#">Help</a></li>
-              <li><a href="#">Sign Up</a></li>
-              <li><a href="#">Log In</a></li>
-
-            </ul>
-          </div>
-
-
-
-        </nav>
-
-
-
-    );
-  }
+        );
+    }
 
 }

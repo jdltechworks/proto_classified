@@ -21,7 +21,7 @@ export default class App extends Component {
 				<Navbar />
 
 				Hello from react {_.toString(this.state.test)}
-				
+
 			</div>
 		)
 	}

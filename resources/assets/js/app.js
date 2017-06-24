@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import _ from 'lodash'
+import 'bootstrap/scss/bootstrap.scss'
+
 
 //** Import defined components
-import Navbar from './components/navbar';
+import Navigation from './components/navbar';
 
 
 export default class App extends Component {
@@ -18,13 +20,12 @@ export default class App extends Component {
 				this.setState({ test: !this.state.test })
 
 			}}>
-				<Navbar />
+				<Navigation />
 
-				Hello from react {_.toString(this.state.test)}
+				Hello from reactsss {_.toString(this.state.test)}
 
 			</div>
 		)
 	}
 }
-
 render(<App />, document.getElementById('app'))

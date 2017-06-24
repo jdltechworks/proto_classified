@@ -44,7 +44,7 @@ export default class Navheader extends Component {
                     </div>
                 </nav>
             </div>
-        );
+        )
     }
 
 }

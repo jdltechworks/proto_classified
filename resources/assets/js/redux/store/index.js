@@ -1,4 +1,4 @@
-import modules from './modules'
+import modules from '../modules'
 import thunkMiddleware from 'redux-thunk'
 import { createStore, compose, applyMiddleware } from 'redux'
 import { createApiMiddleware } from 'redux-module-builder/api'
@@ -22,20 +22,20 @@ let middlewares = [
     thunkMiddleware
 ]
 
-export default (historyType) =>
-    
+export default (historyType, composer, request) => {
     middlewares.push(
         routerMiddleware(historyType)
     )
 
-    let composeStore = compose(
+    const create = composer ? composer : compose
+    const history = !request ? historyType : historyType(request.url)
+    let composeStore = create(
         applyMiddleware(...middlewares),
-        ...tools
-    )(createStore)   
-    
+    )(createStore)
+    const store = composeStore(reducers, initialState)
     return {
-        history: syncHistoryWithStore(historyType)
-        store: composeStore(reducers, initialState),
+        history: syncHistoryWithStore(history, store),
+        store,
         actions: bindActionCreatorsToStore(actions, store)
     }
 }

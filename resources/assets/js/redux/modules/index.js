@@ -27,8 +27,8 @@ const initialActions = {
  * @type {Object}
  */
 const initialReducers = { 
-    form
-    routing,
+    form,
+    routing
 }
 
 const initialState = {}
@@ -53,7 +53,7 @@ const reducers = combineReducers(bundled.reducers)
 export default () => {
     return {
         reducers,
-        actions: Object.assign(inititalActions, bundled.actions)
+        actions: Object.assign(initialActions, bundled.actions),
         initialState: bundled.initialState
     }
 }

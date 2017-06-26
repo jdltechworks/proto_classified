@@ -9819,7 +9819,7 @@ exports.default = App;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -9837,206 +9837,137 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Navheader = function (_Component) {
-  _inherits(Navheader, _Component);
+    _inherits(Navheader, _Component);
 
-  function Navheader() {
-    var _ref;
+    function Navheader() {
+        _classCallCheck(this, Navheader);
 
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Navheader);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+        return _possibleConstructorReturn(this, (Navheader.__proto__ || Object.getPrototypeOf(Navheader)).apply(this, arguments));
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Navheader.__proto__ || Object.getPrototypeOf(Navheader)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function (e) {}, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(Navheader, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "nav",
-        { className: "navbar navbar-default navbar-fixed-top" },
-        _react2.default.createElement(
-          "div",
-          { className: "container-fluid" },
-          _react2.default.createElement(
-            "div",
-            { className: "navbar-header" },
-            _react2.default.createElement(
-              "a",
-              { className: "navbar-brand", href: "#" },
-              "Brand"
-            )
-          ),
-          _react2.default.createElement(
-            "form",
-            { className: "navbar-form navbar-left", role: "search" },
-            _react2.default.createElement(
-              "div",
-              { className: "form-group" },
-              _react2.default.createElement(
+    _createClass(Navheader, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
                 "div",
-                { className: "input-group" },
+                null,
                 _react2.default.createElement(
-                  "div",
-                  { className: "input-group-addon" },
-                  _react2.default.createElement("i", { className: "fa fa-search" })
+                    "nav",
+                    { className: "navbar navbar-toggleable-md navbar-light bg-primary first-layer" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "container" },
+                        _react2.default.createElement(
+                            "ul",
+                            { className: "list-inline mr-auto" },
+                            _react2.default.createElement(
+                                "li",
+                                { className: "list-inline-item" },
+                                _react2.default.createElement(
+                                    "a",
+                                    { href: "#" },
+                                    "Login"
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "li",
+                                { className: "list-inline-item" },
+                                _react2.default.createElement(
+                                    "a",
+                                    { href: "#", className: "ml-sm-3" },
+                                    "Register"
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "ul",
+                            { className: "float-right list-inline mt-2 mt-md-0" },
+                            _react2.default.createElement(
+                                "li",
+                                { className: "list-inline-item" },
+                                "a"
+                            ),
+                            _react2.default.createElement(
+                                "li",
+                                { className: "list-inline-item" },
+                                "a"
+                            )
+                        )
+                    )
                 ),
-                _react2.default.createElement("input", { type: "text", className: "form-control", id: "exampleInputAmount", placeholder: "Place" })
-              )
-            ),
-            _react2.default.createElement(
-              "div",
-              { className: "btn-group" },
-              _react2.default.createElement(
-                "button",
-                { type: "button", className: "no-radius btn btn-default dropdown-toggle", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" },
-                _react2.default.createElement("span", { className: "fa fa-calendar" }),
-                " Anytime"
-              ),
-              _react2.default.createElement(
-                "ul",
-                { className: "dropdown-menu" },
                 _react2.default.createElement(
-                  "li",
-                  null,
-                  _react2.default.createElement(
-                    "a",
-                    { href: "#" },
-                    "Action"
-                  )
-                ),
-                _react2.default.createElement(
-                  "li",
-                  null,
-                  _react2.default.createElement(
-                    "a",
-                    { href: "#" },
-                    "Another action"
-                  )
-                ),
-                _react2.default.createElement(
-                  "li",
-                  null,
-                  _react2.default.createElement(
-                    "a",
-                    { href: "#" },
-                    "Something else here"
-                  )
-                ),
-                _react2.default.createElement("li", { role: "separator", className: "divider" }),
-                _react2.default.createElement(
-                  "li",
-                  null,
-                  _react2.default.createElement(
-                    "a",
-                    { href: "#" },
-                    "Separated link"
-                  )
+                    "nav",
+                    { className: "navbar navbar-toggleable-md navbar-light bg-faded" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "container" },
+                        _react2.default.createElement(
+                            "button",
+                            { className: "navbar-toggler navbar-toggler-right", type: "button", "data-toggle": "collapse", "data-target": "#navbarSupportedContent", "aria-controls": "navbarSupportedContent", "aria-expanded": "false", "aria-label": "Toggle navigation" },
+                            _react2.default.createElement("span", { className: "navbar-toggler-icon" })
+                        ),
+                        _react2.default.createElement(
+                            "a",
+                            { className: "navbar-brand", href: "#" },
+                            "Brand"
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "collapse navbar-collapse", id: "navbarSupportedContent" },
+                            _react2.default.createElement(
+                                "ul",
+                                { className: "navbar-nav mr-auto" },
+                                _react2.default.createElement(
+                                    "li",
+                                    { className: "nav-item active" },
+                                    _react2.default.createElement(
+                                        "a",
+                                        { className: "nav-link", href: "#" },
+                                        "Home ",
+                                        _react2.default.createElement(
+                                            "span",
+                                            { className: "sr-only" },
+                                            "(current)"
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    "li",
+                                    { className: "nav-item" },
+                                    _react2.default.createElement(
+                                        "a",
+                                        { className: "nav-link", href: "#" },
+                                        "Link"
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    "li",
+                                    { className: "nav-item" },
+                                    _react2.default.createElement(
+                                        "a",
+                                        { className: "nav-link disabled", href: "#" },
+                                        "Disabled"
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "form",
+                                { className: "form-inline my-2 my-lg-0" },
+                                _react2.default.createElement("input", { className: "form-control mr-sm-2", type: "text", placeholder: "Search" }),
+                                _react2.default.createElement(
+                                    "button",
+                                    { className: "btn btn-outline-success my-2 my-sm-0", type: "submit" },
+                                    "Search"
+                                )
+                            )
+                        )
+                    )
                 )
-              )
-            ),
-            _react2.default.createElement(
-              "div",
-              { className: "btn-group " },
-              _react2.default.createElement(
-                "button",
-                { type: "button", className: "text-left btn btn-default dropdown-toggle", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" },
-                _react2.default.createElement("span", { className: "fa fa-group" }),
-                " 1 Guest"
-              ),
-              _react2.default.createElement(
-                "ul",
-                { className: "dropdown-menu" },
-                _react2.default.createElement(
-                  "li",
-                  null,
-                  _react2.default.createElement(
-                    "a",
-                    { href: "#" },
-                    "Action"
-                  )
-                ),
-                _react2.default.createElement(
-                  "li",
-                  null,
-                  _react2.default.createElement(
-                    "a",
-                    { href: "#" },
-                    "Another action"
-                  )
-                ),
-                _react2.default.createElement(
-                  "li",
-                  null,
-                  _react2.default.createElement(
-                    "a",
-                    { href: "#" },
-                    "Something else here"
-                  )
-                ),
-                _react2.default.createElement("li", { role: "separator", className: "divider" }),
-                _react2.default.createElement(
-                  "li",
-                  null,
-                  _react2.default.createElement(
-                    "a",
-                    { href: "#" },
-                    "Separated link"
-                  )
-                )
-              )
-            )
-          ),
-          _react2.default.createElement(
-            "ul",
-            { className: "nav navbar-nav navbar-right" },
-            _react2.default.createElement(
-              "li",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "Become a Host"
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "Help"
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "Sign Up"
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "Log In"
-              )
-            )
-          )
-        )
-      );
-    }
-  }]);
+            );
+        }
+    }]);
 
-  return Navheader;
+    return Navheader;
 }(_react.Component);
 
 exports.default = Navheader;

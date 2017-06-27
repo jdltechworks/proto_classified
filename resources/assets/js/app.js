@@ -1,30 +1,7 @@
-import React, { Component } from 'react'
 import { render } from 'react-dom'
-import _ from 'lodash'
+import React, { Component } from 'react'
+import ClientProvider from './provider/Client'
 
-//** Import defined components
-import Navbar from './components/navbar';
+import 'bootstrap/scss/bootstrap.scss'
 
-
-export default class App extends Component {
-	state = {
-		test: true
-	}
-	render() {
-		return (
-
-			<div className="app-container" onClick={(e) => {
-				console.log(this.state.test)
-				this.setState({ test: !this.state.test })
-
-			}}>
-				<Navbar />
-
-				Hello from react {_.toString(this.state.test)}
-
-			</div>
-		)
-	}
-}
-
-render(<App />, document.getElementById('app'))
+render(<ClientProvider />, document.getElementById('app'))

@@ -19,3 +19,9 @@ authorize:
 run:
 	php artisan serve &
 	npm run hot &
+
+rebase:
+	composer install
+	rm -rf ./storage/logs/laravel.log
+	touch ./storage/logs/laravel.log
+	yarn

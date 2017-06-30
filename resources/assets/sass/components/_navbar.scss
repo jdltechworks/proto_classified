@@ -1,6 +1,25 @@
 .first-layer {
     a {
         color: $brand-white;
-        
+        font-size: $font-size-small;
+    }
+
+    .social-media-icons {
+        a {
+            font-size: 16px;
+        }
+
+        li {
+            margin-left: 5px;
+        }
+    }
+}
+
+.second-nav-layer {
+    .navbar-nav {
+        li a {
+            color: $brand-primary;
+            font-size: $font-size-base;
+        }
     }
 }

@@ -5,6 +5,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+ // Font-awesome
+ $fa-font-path: "~font-awesome/fonts/";
+ @import "~font-awesome/scss/font-awesome.scss";
+
 // Core variables and mixins
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";

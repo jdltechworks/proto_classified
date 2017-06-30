@@ -1,3 +1,8 @@
+
+// Font-awesome
+$fa-font-path: "~font-awesome/fonts/";
+@import "~font-awesome/scss/font-awesome.scss";
+
 @mixin font-face($style-name, $file, $family, $category: "") {
   $filepath: "../fonts/" + $family + "/" + $file;
 

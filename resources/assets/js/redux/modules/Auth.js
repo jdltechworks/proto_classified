@@ -1,5 +1,6 @@
 import {createConstants, createReducer} from 'redux-module-builder'
 import {createApiHandler, createApiAction} from 'redux-module-builder/api'
+import map from 'lodash/map'
 
 const { RequestHeaders } = window.Laravel
 
@@ -18,6 +19,10 @@ export const initialState = {
 
 export const actions = {
     login(email, password) {
+        const body = new FormData()
+        
+        body.append('email', email)
+        body.append('password', password)
         /**
          * return an actions type and return objects of that type
          * you can use the fetch api here in there return section
@@ -27,10 +32,10 @@ export const actions = {
          */
         return (dispatch, getState) => {
             //send a fetch api here
-            return fetch('http://localhost:3000/login', {
+            return fetch('/login', {
                 method: 'POST',
                 headers: RequestHeaders,
-                body: JSON.stringify({ email, password })
+                body
             }).then((res) => {
 
                 dispatch({ type: types.LOGIN, payload: res })

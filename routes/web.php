@@ -13,8 +13,10 @@
 
 Route::resource('product', 'ProductController');
 
-//Auth::routes();
+Route::post('/login', 'LoginController@authenticate');
 
 Route::get('/{path?}', function () {
     return view('index');
 });
+
+

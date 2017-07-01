@@ -41,19 +41,19 @@ export const actions = {
 }
 
 export const reducer = createReducer({
-    [types.LOGIN]: (state, { payload }) {
+    [types.LOGIN]: (state, { payload }) => {
         return {
             ...state,
             payload
         }
     },
-    [types.LOGOUT]: (state, {payload}) {
+    [types.LOGOUT]: (state, {payload}) => {
         return {
             ...state,
             payload
         }
     },
-    [types.REGISTER]: (state, { payload }) {
+    [types.REGISTER]: (state, { payload }) => {
         return {
             ...state,
             payload

@@ -3,14 +3,10 @@ import { Collapse, Container, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, 
 import { Link } from 'react-router'
 
 export default class Navigation extends Component {
-    constructor(props) {
-        super(props);
-
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            isOpen: false
-        };
+    state = {
+        isOpen: false
     }
+
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
@@ -56,7 +52,7 @@ export default class Navigation extends Component {
                 </Navbar>
                 <Navbar color="faded" light toggleable className="second-nav-layer">
                     <Container>
-                        <NavbarToggler right onClick={this.toggle} />
+                        <NavbarToggler right onClick={this.toggle.bind(this)} />
                         <NavbarBrand href="/">Brand</NavbarBrand>
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="mr-auto" navbar>
@@ -80,7 +76,6 @@ export default class Navigation extends Component {
                                 <NavItem>
                                     <button className="btn btn-success my-2 my-sm-0" type="submit">Post your Ad!</button>
                                 </NavItem>
-
                             </Nav>
                         </Collapse>
                     </Container>

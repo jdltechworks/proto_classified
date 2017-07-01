@@ -1,6 +1,8 @@
 import {createConstants, createReducer} from 'redux-module-builder'
 import {createApiHandler, createApiAction} from 'redux-module-builder/api'
 
+const { RequestHeaders } = window.Laravel
+
 export const types = createConstants('auth')(
     'LOGIN',
     'REGISTER',
@@ -25,7 +27,14 @@ export const actions = {
          */
         return (dispatch, getState) => {
             //send a fetch api here
-            return 
+            return fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: RequestHeaders,
+                body: JSON.stringify({ email, password })
+            }).then((res) => {
+
+                dispatch({ type: types.LOGIN, payload: res })
+            }).catch(err => dispatch({ type: types.ERROR_LOGIN_FAILED, payload: err }))
         }
     },
     logout() {

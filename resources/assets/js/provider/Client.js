@@ -4,13 +4,15 @@ import { Provider } from 'react-redux'
 import initRedux from '../redux/store'
 import routes from '../routes'
 
-const { store, action, history } = initRedux(browserHistory, window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
+const { store, actions, history } = initRedux(browserHistory, window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
+
+export const methods = actions
 
 export default class ClientProvider extends Component {
     render() {
         return(
             <Provider store={store}>
-                <Router history={history} routes={routes}></Router>
+                <Router history={history} routes={routes} {...actions}></Router>
             </Provider>
         )
     }

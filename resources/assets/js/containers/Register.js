@@ -17,7 +17,7 @@ const validate = (values) => {
 }
 
 
-class Login extends Component {
+class Register extends Component {
   componentDidMount() {
     this.props.actions.Auth.check()
   }
@@ -58,8 +58,7 @@ class Login extends Component {
   }
 }
 
-
 export default reduxForm({
-    form:'login',
+    form:'register',
     validate
-})(Login)
+})(Register)

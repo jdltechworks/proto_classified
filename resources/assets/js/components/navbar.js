@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Collapse, Container, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 import { Link } from 'react-router'
-
+import isUndefined from 'lodash/isUndefined'
 export default class Navigation extends Component {
     state = {
         isOpen: false
@@ -12,18 +12,29 @@ export default class Navigation extends Component {
             isOpen: !this.state.isOpen
         });
     }
+    Logout(e) {
+        e.preventDefault()
+        let { actions: { Auth } } = this.props;
+        Auth.logout()
+    }
     render() {
-
+        const { Auth } = this.props
         return (
             <div>
                 <Navbar color="faded" light toggleable className="first-layer">
                     <Container>
                         <Nav className="mr-auto" navbar>
                             <NavItem>
-                                <NavLink href="#">Login</NavLink>
+                                <Link className="nav-link" to="/user">User</Link>
                             </NavItem>
                             <NavItem>
-                                <a onClick={this.props.Auth.logout} href="#" className="nav-link">Logout</a>
+                                <Link className="nav-link" to="/login">Login</Link>
+                            </NavItem>
+                            <NavItem>
+                                <Link className="nav-link" to="/register">Signup</Link>
+                            </NavItem>
+                            <NavItem>
+                                <a onClick={this.Logout.bind(this)} href="#" className="nav-link">Logout</a>
                             </NavItem>
                         </Nav>
 

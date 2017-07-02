@@ -1,14 +1,20 @@
 import {createConstants, createReducer} from 'redux-module-builder'
 import {createApiHandler, createApiAction} from 'redux-module-builder/api'
 import map from 'lodash/map'
+import isEmpty from 'lodash/isEmpty'
+import includes from 'lodash/includes'
+import { push } from 'react-router-redux'
 
 const { RequestHeaders } = window.Laravel
 
 export const types = createConstants('auth')(
     'LOGIN',
+    'CHECK',
     'LOGOUT',
     'REGISTER',
-    'ERROR'
+    'ERROR',
+    'IS_NOT_AUTHENITCATED',
+    'IS_AUTHENITCATED'
 )
 
 export const initialState = {
@@ -18,6 +24,37 @@ export const initialState = {
 }
 
 export const actions = {
+    check () {
+        return (dispatch, getState) => {
+
+            dispatch({ type: types.CHECK, })
+            if(_.includes(['login, register'], location.pathname) && !isEmpty(curr_user)) {
+                dispatch({
+                    type: types.IS_AUTHENITCATED, 
+                    session: JSON.parse(atob(curr_user))
+                })
+                dispatch(push('/'))
+            }
+
+
+        }
+    },
+    requireAuth () {
+        return (dispatch, getState) => {
+
+            dispatch({ type: types.CHECK })
+            if(isEmpty(curr_user)) {
+                dispatch(push('/login'))
+            } else {
+                dispatch({
+                    type: types.IS_AUTHENITCATED, 
+                    session: JSON.parse(atob(curr_user))
+                })
+            }
+
+
+        }
+    },
     login(email, password) {
         const body = new FormData()
         body.append('email', email)
@@ -41,6 +78,7 @@ export const actions = {
                 return res.json()
             }).then((session) => {
                 dispatch({ type: types.LOGIN, session })
+                dispatch(push('/'))
             }).catch(err => dispatch({ type: types.ERROR, payload: err }))
         }
     },
@@ -60,11 +98,6 @@ export const actions = {
             }).then((session) => {
                 dispatch({ type: types.LOGOUT, session })
             }).catch(err => dispatch({ type: types.ERROR, payload: err }))
-        }
-    },
-    register(user) {
-        return (dispatch, getState) => {
-
         }
     }
 }
@@ -87,6 +120,12 @@ export const reducer = createReducer({
     [types.REGISTER]: (state, { session }) => {
         return {
             ...state,
+            session
+        }
+    },
+    [types.IS_AUTHENITCATED]: (state, { session }) => {
+        return {
+            state,
             session
         }
     }

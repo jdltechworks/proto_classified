@@ -12,7 +12,7 @@ export default class ClientProvider extends Component {
     render() {
         return(
             <Provider store={store}>
-                <Router history={history} routes={routes} {...actions}></Router>
+                <Router history={history} routes={routes}></Router>
             </Provider>
         )
     }

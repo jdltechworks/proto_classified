@@ -13,10 +13,7 @@
 
 Route::resource('product', 'ProductController');
 
-Route::post('/login', 'LoginController@authenticate');
+Auth::routes();
 
-Route::get('/{path?}', function () {
-    return view('index');
-});
-
+Route::get('/{path?}', 'HomeController@index');
 

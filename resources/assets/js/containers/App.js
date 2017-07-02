@@ -6,7 +6,7 @@ export default class App extends Component {
     render() {
         return(
             <div className="app-container">
-                <Navigation />
+                <Navigation {...actions}/>
                 {Children.map(this.props.children, (child) => {
                     return cloneElement(child, { actions })
                 })}

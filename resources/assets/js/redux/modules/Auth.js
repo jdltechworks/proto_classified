@@ -6,23 +6,23 @@ const { RequestHeaders } = window.Laravel
 
 export const types = createConstants('auth')(
     'LOGIN',
+    'LOGOUT',
     'REGISTER',
-    'ERROR_LOGIN_FAILED'
+    'ERROR'
 )
 
 export const initialState = {
     isLoggingIn: false,
     isLoggedIn:false,
-    loggedOut: true,
-    session: {}
+    loggedOut: true
 }
 
 export const actions = {
     login(email, password) {
         const body = new FormData()
-        
         body.append('email', email)
         body.append('password', password)
+
         /**
          * return an actions type and return objects of that type
          * you can use the fetch api here in there return section
@@ -34,17 +34,32 @@ export const actions = {
             //send a fetch api here
             return fetch('/login', {
                 method: 'POST',
+                credentials: "same-origin",
                 headers: RequestHeaders,
                 body
             }).then((res) => {
-
-                dispatch({ type: types.LOGIN, payload: res })
-            }).catch(err => dispatch({ type: types.ERROR_LOGIN_FAILED, payload: err }))
+                return res.json()
+            }).then((session) => {
+                dispatch({ type: types.LOGIN, session })
+            }).catch(err => dispatch({ type: types.ERROR, payload: err }))
         }
     },
     logout() {
         return (dispatch, getState) => {
-
+            //send a fetch api here
+            const body = new FormData()
+            body.append('_token', window.Laravel.csrfToken)
+            
+            return fetch('/logout', {
+                method: 'POST',
+                credentials: "same-origin",
+                headers: RequestHeaders,
+                body
+            }).then((res) => {
+                return res.json()
+            }).then((session) => {
+                dispatch({ type: types.LOGOUT, session })
+            }).catch(err => dispatch({ type: types.ERROR, payload: err }))
         }
     },
     register(user) {
@@ -55,22 +70,24 @@ export const actions = {
 }
 
 export const reducer = createReducer({
-    [types.LOGIN]: (state, { payload }) => {
+    [types.LOGIN]: (state, { session }) => {
         return {
             ...state,
-            payload
+            loggedOut: false,
+            session
         }
     },
-    [types.LOGOUT]: (state, {payload}) => {
+    [types.LOGOUT]: (state, { session }) => {
         return {
             ...state,
-            payload
+            loggedOut: true,
+            session
         }
     },
-    [types.REGISTER]: (state, { payload }) => {
+    [types.REGISTER]: (state, { session }) => {
         return {
             ...state,
-            payload
+            session
         }
     }
 })

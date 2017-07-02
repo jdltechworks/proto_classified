@@ -13,6 +13,7 @@ export default class Navigation extends Component {
         });
     }
     render() {
+
         return (
             <div>
                 <Navbar color="faded" light toggleable className="first-layer">
@@ -22,7 +23,7 @@ export default class Navigation extends Component {
                                 <NavLink href="#">Login</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#">Register</NavLink>
+                                <a onClick={this.props.Auth.logout} href="#" className="nav-link">Logout</a>
                             </NavItem>
                         </Nav>
 

@@ -20,8 +20,8 @@ const validate = (values) => {
 class Login extends Component {
   submitLogin(values) {
     const { actions } = this.props
-    let { username, password } = values
-    actions.Auth.login(username, password)
+    let { email, password } = values
+    actions.Auth.login(email, password)
   }
   render() {
     let { handleSubmit } = this.props

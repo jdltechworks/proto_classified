@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Collapse, Container, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
+import { Collapse, Button, Container, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 import { Link } from 'react-router'
 import isUndefined from 'lodash/isUndefined'
 export default class Navigation extends Component {
@@ -20,9 +20,11 @@ export default class Navigation extends Component {
     render() {
         const { Auth } = this.props
         return (
-            <div>
-                <Navbar color="faded" light toggleable className="first-layer">
-                    <Container>
+            <Navbar color="faded" light toggleable className="second-nav-layer">
+                <Container>
+                    <NavbarToggler right onClick={this.toggle.bind(this)} />
+                    <NavbarBrand href="/">Brand</NavbarBrand>
+                    <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="mr-auto" navbar>
                             <NavItem>
                                 <Link className="nav-link" to="/user">User</Link>
@@ -37,62 +39,14 @@ export default class Navigation extends Component {
                                 <a onClick={this.Logout.bind(this)} href="#" className="nav-link">Logout</a>
                             </NavItem>
                         </Nav>
-
-                        <Nav className="mr-auto" navbar>
+                        <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="#">
-                                    <span className="fa fa-facebook-square"></span>
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="#">
-                                    <span className="fa fa-twitter-square"></span>
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="#">
-                                    <span className="fa fa-google-plus-square"></span>
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="#">
-                                    <span className="fa fa-linkedin-square"></span>
-                                </NavLink>
+                                <Button outline color="success">Post your Ad!</Button>
                             </NavItem>
                         </Nav>
-                    </Container>
-                </Navbar>
-                <Navbar color="faded" light toggleable className="second-nav-layer">
-                    <Container>
-                        <NavbarToggler right onClick={this.toggle.bind(this)} />
-                        <NavbarBrand href="/">Brand</NavbarBrand>
-                        <Collapse isOpen={this.state.isOpen} navbar>
-                            <Nav className="mr-auto" navbar>
-                                <NavItem>
-                                    <NavLink href="#">Home</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#">Theme Features</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#">Shop</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#">Forum</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="#">Contact Us</NavLink>
-                                </NavItem>
-                            </Nav>
-                            <Nav className="ml-auto" navbar>
-                                <NavItem>
-                                    <button className="btn btn-success my-2 my-sm-0" type="submit">Post your Ad!</button>
-                                </NavItem>
-                            </Nav>
-                        </Collapse>
-                    </Container>
-                </Navbar>
-            </div>
+                    </Collapse>
+                </Container>
+            </Navbar>
         );
     }
 }

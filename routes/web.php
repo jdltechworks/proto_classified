@@ -10,9 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('index');
-});
-
 
 Route::resource('product', 'ProductController');
+
+Auth::routes();
+
+Route::get('/{path?}', 'HomeController@index');
+

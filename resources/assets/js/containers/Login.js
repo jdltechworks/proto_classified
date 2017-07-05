@@ -3,6 +3,7 @@ import { reduxForm } from 'redux-form'
 import { LOGIN } from '../models/Login'
 import { renderField } from '../helpers'
 import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
 
 
 const validate = (values) => {
@@ -42,12 +43,10 @@ class Login extends Component {
                 <br />
 
                 {_.map(LOGIN, renderField.bind(this))}
-                <button className="btn btn-info">Login</button>
+                <small>New to AWPI? <Link to="/register">Sign-up</Link></small>
+                <button className="btn btn-block btn-info">Login</button>
                 </div>
                 <br />
-                </div>
-                <div className="card-footer">
-                  <span>New to AWPI? <a href="#">Sign-up</a></span>
                 </div>
               </div>
             </form>

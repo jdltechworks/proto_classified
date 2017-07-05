@@ -27,13 +27,24 @@ export const actions = {
     check () {
         return (dispatch, getState) => {
 
-            dispatch({ type: types.CHECK, })
-            if(_.includes(['login, register'], location.pathname) && !isEmpty(curr_user)) {
+            dispatch({ type: types.CHECK })
+            if(!isEmpty(curr_user)) {
                 dispatch({
                     type: types.IS_AUTHENITCATED, 
                     session: JSON.parse(atob(curr_user))
                 })
                 dispatch(push('/'))
+               
+            } else {
+                const { Auth } = getState()
+                const { session } = Auth
+                if(!isEmpty(session)) {
+                    dispatch({
+                        type: types.IS_AUTHENITCATED,
+                        session
+                    })
+                    dispatch(push('/'))
+                }
             }
 
 
@@ -43,13 +54,23 @@ export const actions = {
         return (dispatch, getState) => {
 
             dispatch({ type: types.CHECK })
-            if(isEmpty(curr_user)) {
-                dispatch(push('/login'))
-            } else {
+            if(!isEmpty(curr_user)) {
                 dispatch({
                     type: types.IS_AUTHENITCATED, 
                     session: JSON.parse(atob(curr_user))
                 })
+               
+            } else {
+                const { Auth } = getState()
+                const { session } = Auth
+                if(!isEmpty(session)) {
+                    dispatch({
+                        type: types.IS_AUTHENITCATED,
+                        session
+                    })
+                } else {
+                    dispatch(push('/login'))
+                }
             }
 
 
@@ -78,6 +99,7 @@ export const actions = {
                 return res.json()
             }).then((session) => {
                 dispatch({ type: types.LOGIN, session })
+                console.log(getState())
                 dispatch(push('/'))
             }).catch(err => dispatch({ type: types.ERROR, payload: err }))
         }
@@ -96,8 +118,9 @@ export const actions = {
             }).then((res) => {
                 return res.json()
             }).then((session) => {
-                dispatch({ type: types.LOGOUT, session })
-            }).catch(err => dispatch({ type: types.ERROR, payload: err }))
+                curr_user = ''
+                dispatch({ type: types.LOGOUT, session: '' })
+            }).catch(error => dispatch({ type: types.ERROR, payload: error }))
         }
     }
 }
@@ -114,7 +137,7 @@ export const reducer = createReducer({
         return {
             ...state,
             loggedOut: true,
-            session
+            session: ''
         }
     },
     [types.REGISTER]: (state, { session }) => {
@@ -125,8 +148,14 @@ export const reducer = createReducer({
     },
     [types.IS_AUTHENITCATED]: (state, { session }) => {
         return {
-            state,
+            ...state,
             session
+        }
+    },
+    [types.ERROR]: (state, { error }) => {
+        return {
+            ...state,
+            ...error
         }
     }
 })

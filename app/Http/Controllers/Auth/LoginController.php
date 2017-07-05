@@ -32,8 +32,6 @@ class LoginController extends Controller
             // Authentication passed...
             return response(Auth::user(), 200);
         }
-
-        return response([ 'error' => 'Login failed'], 401);
     }
 
     public function logout() {

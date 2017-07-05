@@ -90,6 +90,7 @@ export const actions = {
          */
         return (dispatch, getState) => {
             //send a fetch api here
+            dispatch({ type: types.LOGIN })
             return fetch('/login', {
                 method: 'POST',
                 credentials: "same-origin",
@@ -98,8 +99,7 @@ export const actions = {
             }).then((res) => {
                 return res.json()
             }).then((session) => {
-                dispatch({ type: types.LOGIN, session })
-                console.log(getState())
+                dispatch({ type: types.IS_AUTHENITCATED, session })
                 dispatch(push('/'))
             }).catch(err => dispatch({ type: types.ERROR, payload: err }))
         }
@@ -126,18 +126,12 @@ export const actions = {
 }
 
 export const reducer = createReducer({
-    [types.LOGIN]: (state, { session }) => {
-        return {
-            ...state,
-            loggedOut: false,
-            session
-        }
-    },
     [types.LOGOUT]: (state, { session }) => {
         return {
             ...state,
             loggedOut: true,
-            session: ''
+            session: '',
+            loggedIn: false
         }
     },
     [types.REGISTER]: (state, { session }) => {
@@ -149,6 +143,8 @@ export const reducer = createReducer({
     [types.IS_AUTHENITCATED]: (state, { session }) => {
         return {
             ...state,
+            loggedIn: true,
+            loggedOut: false,
             session
         }
     },

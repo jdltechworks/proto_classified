@@ -36,17 +36,16 @@ class Login extends Component {
             <form onSubmit={handleSubmit((props) => {this.submitLogin(props)})}>
               <div className="card">
                 <div className="card-block">
-                <div className="card-title">
-                  Log in to your account
-                </div>
-                <div className="card-text">
-                <br />
+                  <div className="card-title">
+                    Log in to your account
+                  </div>
+                  <div className="card-text">
+                  <br />
 
-                {_.map(LOGIN, renderField.bind(this))}
-                <small>New to AWPI? <Link to="/register">Sign-up</Link></small>
-                <button className="btn btn-block btn-info">Login</button>
-                </div>
-                <br />
+                  {_.map(LOGIN, renderField.bind(this))}
+                  <button className="btn btn-block btn-info">Login</button>
+                  <small>New to AWPI? <Link to="/register">Sign-up</Link></small>
+                  </div>
                 </div>
               </div>
             </form>

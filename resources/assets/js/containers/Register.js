@@ -29,7 +29,7 @@ class Register extends Component {
   render() {
     let { handleSubmit } = this.props
     return (
-      <section className="login clearfix" style={{ paddingTop: '10%' }}>
+      <section className="register clearfix" style={{ paddingTop: '10%' }}>
         <div className="row">
           <div className="m-auto">
             <form onSubmit={handleSubmit((props) => {this.submitLogin(props)})}>
@@ -45,9 +45,7 @@ class Register extends Component {
                 <button className="btn btn-info">Login</button>
                 </div>
                 <br />
-                </div>
-                <div className="card-footer">
-                  <span>New to AWPI? <a href="#">Sign-up</a></span>
+                <span>New to AWPI? <a href="#">Sign-up</a></span>
                 </div>
               </div>
             </form>

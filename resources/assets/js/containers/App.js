@@ -1,5 +1,5 @@
 import React, { cloneElement, Component, Children } from 'react'
-import Navigation from '../components/navbar'
+import Navigation from '../components/Navigation'
 import { methods as actions } from '../provider/Client'
 import { connect } from 'react-redux'
 import omit from 'lodash/omit'

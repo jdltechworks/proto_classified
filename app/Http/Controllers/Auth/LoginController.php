@@ -31,6 +31,8 @@ class LoginController extends Controller
         if (Auth::attempt($request->all())) {
             // Authentication passed...
             return response(Auth::user(), 200);
+        } else {
+            return response([ 'error' => 'Invalid login credentials'], 401);
         }
     }
 

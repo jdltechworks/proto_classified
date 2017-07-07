@@ -17,11 +17,19 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::with(['user', 'categories'])->latest()->take(24)->get();
         $title = 'Products';
-        return view('product.index', compact('products', 'title'));
+
+        if($request->wantsJson()) {
+            return response(compact('title', 'products'), 200);
+        } else {
+            return view('index');
+        }
+        
+
+        
     }
 
     /**
@@ -31,7 +39,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        return view('index');
     }
 
     /**
@@ -51,14 +59,19 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, Request $request)
     {   
 
         $categories = $product->categories->modelKeys();
         $related = $product->whereHas('categories', function ($query) use ($categories) {
             $query->whereIn('categories.id', $categories);
         })->where('id', '<>', $product->id)->latest()->take(5)->get();
-        return view('product.show', compact('product', 'related'));
+        if($request->wantsJson()) {
+            return response(compact('product', 'related'), 200);
+        } else {
+            return view('index', compact('product', 'related'));
+        }
+        
     }
 
     /**

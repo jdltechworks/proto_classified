@@ -3400,6 +3400,7 @@ figure {
 }
 
 hr {
+  -webkit-box-sizing: content-box;
   box-sizing: content-box;
   height: 0;
   overflow: visible;
@@ -3540,6 +3541,7 @@ fieldset {
 }
 
 legend {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: inherit;
   display: table;
@@ -3559,6 +3561,7 @@ textarea {
 
 [type=checkbox],
 [type=radio] {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0;
 }
@@ -3617,6 +3620,7 @@ template {
   p::first-letter,
   p::first-line {
     text-shadow: none !important;
+    -webkit-box-shadow: none !important;
     box-shadow: none !important;
   }
 
@@ -3684,12 +3688,14 @@ template {
 }
 
 html {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 *,
 ::after,
 ::before {
+  -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
 
@@ -4066,6 +4072,7 @@ mark {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: .25rem;
+  -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
   max-width: 100%;
   height: auto;
@@ -6086,7 +6093,10 @@ pre code {
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: .25rem;
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
 }
 
 .form-control::-ms-expand {
@@ -6478,6 +6488,7 @@ select.form-control-lg:not([size]):not([multiple]) {
   padding: .5rem 1rem;
   font-size: 1rem;
   border-radius: .25rem;
+  -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
 
@@ -6489,6 +6500,7 @@ select.form-control-lg:not([size]):not([multiple]) {
 .btn.focus,
 .btn:focus {
   outline: 0;
+  -webkit-box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25);
   box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25);
 }
 
@@ -6522,6 +6534,7 @@ fieldset[disabled] a.btn {
 
 .btn-primary.focus,
 .btn-primary:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.5);
   box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.5);
 }
 
@@ -6554,6 +6567,7 @@ fieldset[disabled] a.btn {
 
 .btn-secondary.focus,
 .btn-secondary:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.5);
   box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.5);
 }
 
@@ -6586,6 +6600,7 @@ fieldset[disabled] a.btn {
 
 .btn-info.focus,
 .btn-info:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(91, 192, 222, 0.5);
   box-shadow: 0 0 0 2px rgba(91, 192, 222, 0.5);
 }
 
@@ -6618,6 +6633,7 @@ fieldset[disabled] a.btn {
 
 .btn-success.focus,
 .btn-success:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(92, 184, 92, 0.5);
   box-shadow: 0 0 0 2px rgba(92, 184, 92, 0.5);
 }
 
@@ -6650,6 +6666,7 @@ fieldset[disabled] a.btn {
 
 .btn-warning.focus,
 .btn-warning:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(240, 173, 78, 0.5);
   box-shadow: 0 0 0 2px rgba(240, 173, 78, 0.5);
 }
 
@@ -6682,6 +6699,7 @@ fieldset[disabled] a.btn {
 
 .btn-danger.focus,
 .btn-danger:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(217, 83, 79, 0.5);
   box-shadow: 0 0 0 2px rgba(217, 83, 79, 0.5);
 }
 
@@ -6715,6 +6733,7 @@ fieldset[disabled] a.btn {
 
 .btn-outline-primary.focus,
 .btn-outline-primary:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.5);
   box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.5);
 }
 
@@ -6747,6 +6766,7 @@ fieldset[disabled] a.btn {
 
 .btn-outline-secondary.focus,
 .btn-outline-secondary:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.5);
   box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.5);
 }
 
@@ -6779,6 +6799,7 @@ fieldset[disabled] a.btn {
 
 .btn-outline-info.focus,
 .btn-outline-info:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(91, 192, 222, 0.5);
   box-shadow: 0 0 0 2px rgba(91, 192, 222, 0.5);
 }
 
@@ -6811,6 +6832,7 @@ fieldset[disabled] a.btn {
 
 .btn-outline-success.focus,
 .btn-outline-success:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(92, 184, 92, 0.5);
   box-shadow: 0 0 0 2px rgba(92, 184, 92, 0.5);
 }
 
@@ -6843,6 +6865,7 @@ fieldset[disabled] a.btn {
 
 .btn-outline-warning.focus,
 .btn-outline-warning:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(240, 173, 78, 0.5);
   box-shadow: 0 0 0 2px rgba(240, 173, 78, 0.5);
 }
 
@@ -6875,6 +6898,7 @@ fieldset[disabled] a.btn {
 
 .btn-outline-danger.focus,
 .btn-outline-danger:focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(217, 83, 79, 0.5);
   box-shadow: 0 0 0 2px rgba(217, 83, 79, 0.5);
 }
 
@@ -6962,6 +6986,7 @@ input[type=submit].btn-block {
 
 .fade {
   opacity: 0;
+  -webkit-transition: opacity .15s linear;
   transition: opacity .15s linear;
 }
 
@@ -6989,6 +7014,7 @@ tbody.collapse.show {
   position: relative;
   height: 0;
   overflow: hidden;
+  -webkit-transition: height .35s ease;
   transition: height .35s ease;
 }
 
@@ -7488,6 +7514,7 @@ tbody.collapse.show {
 }
 
 .custom-control-input:focus ~ .custom-control-indicator {
+  -webkit-box-shadow: 0 0 0 1px #fff,0 0 0 3px #0275d8;
   box-shadow: 0 0 0 1px #fff,0 0 0 3px #0275d8;
 }
 
@@ -9261,6 +9288,7 @@ button.close {
 }
 
 .modal.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
   transition: -webkit-transform .3s ease-out;
   transition: transform .3s ease-out;
   transition: transform .3s ease-out, -webkit-transform .3s ease-out;
@@ -9707,6 +9735,7 @@ button.close {
 
 @media (-webkit-transform-3d) {
   .carousel-item {
+    -webkit-transition: -webkit-transform .6s ease-in-out;
     transition: -webkit-transform .6s ease-in-out;
     transition: transform .6s ease-in-out;
     transition: transform .6s ease-in-out, -webkit-transform .6s ease-in-out;
@@ -9720,6 +9749,7 @@ button.close {
 
 @supports ((-webkit-transform: translate3d(0, 0, 0)) or (transform: translate3d(0, 0, 0))) {
   .carousel-item {
+    -webkit-transition: -webkit-transform .6s ease-in-out;
     transition: -webkit-transform .6s ease-in-out;
     transition: transform .6s ease-in-out;
     transition: transform .6s ease-in-out, -webkit-transform .6s ease-in-out;
@@ -13575,3 +13605,6 @@ a.text-gray-dark:hover {
     display: none !important;
   }
 }
+
+
+

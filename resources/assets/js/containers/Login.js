@@ -22,7 +22,7 @@ class Login extends Component {
   componentDidMount() {
     this.props.actions.Auth.check()
   }
-  submitLogin(values) {
+  submitForm(values) {
     const { actions } = this.props
     let { email, password } = values
     actions.Auth.login(email, password)
@@ -32,8 +32,8 @@ class Login extends Component {
     return (
       <section className="login clearfix" style={{ paddingTop: '10%' }}>
         <div className="row">
-          <div className="m-auto">
-            <form onSubmit={handleSubmit((props) => {this.submitLogin(props)})}>
+          <div className="m-auto col-md-2 col-lg-2">
+            <form onSubmit={handleSubmit((props) => {this.submitForm(props)})}>
               <div className="card">
                 <div className="card-block">
                   <div className="card-title">
@@ -43,8 +43,10 @@ class Login extends Component {
                   <br />
 
                   {_.map(LOGIN, renderField.bind(this))}
-                  <button className="btn btn-block btn-info">Login</button>
-                  <small>New to AWPI? <Link to="/register">Sign-up</Link></small>
+                  <div className="form-group text-right">
+                    <small>New to AWPI? <Link to="/register">Sign-up</Link></small>
+                    <button className="btn btn-info">Sign-in</button>
+                  </div>
                   </div>
                 </div>
               </div>

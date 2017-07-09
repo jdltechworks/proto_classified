@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\Request;
+use App\Http\Requests\User\Registration;
 
 
 class RegisterController extends Controller
@@ -22,7 +22,7 @@ class RegisterController extends Controller
      * @param  Validator $validator [description]
      * @return [type]               [description]
      */
-    public function register(Request $form) {
+    public function register(Registration $form) {
        $form->persist();
     }
 

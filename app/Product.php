@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class Product extends Model
 {
@@ -18,6 +19,10 @@ class Product extends Model
     $this->attributes['slug'] = str_slug($value);
   }
   
+  public function setPasswordAttribute($pass) {
+    $this->attributes['password'] = Hash::make($pass);
+  }
+
   public function user()
   {
     return $this->belongsTo(User::class);
@@ -33,11 +38,14 @@ class Product extends Model
       $query->whereIn('categories.id', $keys);
     })->where('id', '<>', $id)->with('categories');
   }
+
   public function categories() 
   {
     return $this->belongsToMany(Category::class);
   }
+
   public function getRouteKeyName() {
     return 'slug';
   }
+  
 }

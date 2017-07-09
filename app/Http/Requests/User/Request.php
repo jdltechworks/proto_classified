@@ -6,6 +6,7 @@ use App\User;
 use App\Mail\Verification;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class Request extends FormRequest
 {
@@ -34,13 +35,17 @@ class Request extends FormRequest
     }
 
     public function persist() {
+        $code = str_random(30);
+        $collection = collect($this->only(
+            ['name', 'email', 'password']
+        ));
 
-        $user = User::create(
-            $this->only(['name', 'email', 'password'])
-        );
+        $input = $collection->merge([ 'confirmation_code' => $code ])->toArray();
+        $user = User::create($input);
 
         auth()->login($user);
 
         Mail::to($user)->send(new Verification($user));
+        
     }
 }

@@ -12,10 +12,12 @@ class Product extends Model
     'description',
     'price'
   ];
+  
   public function setTitleAttribute($value) {
     $this->attributes['title'] = $value;
     $this->attributes['slug'] = str_slug($value);
   }
+  
   public function user()
   {
     return $this->belongsTo(User::class);
@@ -24,6 +26,12 @@ class Product extends Model
   public function comments()
   {
     return $this->hasMany(Comment::class);
+  }
+
+  public function scopeRelated($query, $keys, $id) {
+    return $query->whereHas('categories', function ($query) use ($keys) {
+      $query->whereIn('categories.id', $keys);
+    })->where('id', '<>', $id)->with('categories');
   }
   public function categories() 
   {

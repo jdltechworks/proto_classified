@@ -12,7 +12,7 @@ const routes = (
         <Route path="user" component={User} />
         <Route path="login" component={Login} />
         <Route path="register" component={Register} />
-        <Route path="product" component={Product} />
+        <Route path="product(/:slug)(/edit)" component={Product} />
     </Route>
 )
 

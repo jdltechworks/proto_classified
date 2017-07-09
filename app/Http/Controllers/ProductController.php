@@ -61,16 +61,9 @@ class ProductController extends Controller
      */
     public function show(Product $product, Request $request)
     {   
-
-        $categories = $product->categories->modelKeys();
-        $related = $product->whereHas('categories', function ($query) use ($categories) {
-            $query->whereIn('categories.id', $categories);
-        })->where('id', '<>', $product->id)->latest()->take(5)->get();
-        if($request->wantsJson()) {
-            return response(compact('product', 'related'), 200);
-        } else {
-            return view('index', compact('product', 'related'));
-        }
+        $keys = $product->categories->modelKeys();
+        $related = $product->related($keys, $product->id)->get();
+        return response(compact('product', 'related'), 200);
         
     }
 

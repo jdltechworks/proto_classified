@@ -89,7 +89,10 @@ export const actions = {
                 credentials: 'same-origin',
                 headers: RequestHeaders,
                 body
-            }).then((res) => res.json())
+            }).then((res) => { 
+                console.log(res)
+                res.json()
+            })
             .then((session) => {
                 dispatch({ type: types.REGISTER_SUCCESS, session })
             }).catch(err => dispatch({ type: types.ERROR, err}))

@@ -12,9 +12,11 @@ export const types = createConstants('auth')(
     'CHECK',
     'LOGOUT',
     'REGISTER',
+    'REGISTER_SUCCESS',
     'ERROR',
     'IS_NOT_AUTHENITCATED',
-    'IS_AUTHENITCATED'
+    'IS_AUTHENITCATED',
+    'IS_REGISTERING'
 )
 
 export const initialState = {
@@ -32,9 +34,7 @@ export const actions = {
                 dispatch({
                     type: types.IS_AUTHENITCATED, 
                     session: JSON.parse(atob(curr_user))
-                })
-                dispatch(push('/'))
-               
+                })   
             } else {
                 const { Auth } = getState()
                 const { session } = Auth
@@ -76,6 +76,28 @@ export const actions = {
 
         }
     },
+    signup(props) {
+        return (dispatch, getState) => {
+            const body = new FormData()
+            dispatch({ type: types.IS_REGISTERING })
+            map(props, (value, key) => {
+                body.append(key, value)
+            })
+
+            return fetch('/register', {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: RequestHeaders,
+                body
+            }).then((res) => { 
+                console.log(res)
+                res.json()
+            })
+            .then((session) => {
+                dispatch({ type: types.REGISTER_SUCCESS, session })
+            }).catch(err => dispatch({ type: types.ERROR, err}))
+        }
+    },
     login(email, password) {
         const body = new FormData()
         body.append('email', email)
@@ -101,7 +123,7 @@ export const actions = {
             }).then((session) => {
                 dispatch({ type: types.IS_AUTHENITCATED, session })
                 dispatch(push('/'))
-            }).catch(err => dispatch({ type: types.ERROR, payload: err }))
+            }).catch(error => dispatch({ type: types.ERROR, error }))
         }
     },
     logout() {
@@ -120,7 +142,7 @@ export const actions = {
             }).then((session) => {
                 curr_user = ''
                 dispatch({ type: types.LOGOUT, session: '' })
-            }).catch(error => dispatch({ type: types.ERROR, payload: error }))
+            }).catch(error => dispatch({ type: types.ERROR, error }))
         }
     }
 }
@@ -149,6 +171,7 @@ export const reducer = createReducer({
         }
     },
     [types.ERROR]: (state, { error }) => {
+        console.log(error)
         return {
             ...state,
             ...error

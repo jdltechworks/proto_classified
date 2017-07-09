@@ -11,9 +11,8 @@
 |
 */
 
-Route::resource('product', 'ProductController');
-
 Auth::routes();
 
-Route::get('/{path?}', 'HomeController@index');
+Route::resource('product', 'ProductController');
 
+Route::get('/{path?}', 'HomeController@index');

@@ -16,6 +16,9 @@ export default class AuthNavbar extends Component {
                         <NavLink tag={Link} className="nav-link" to="/user">User</NavLink>
                     </NavItem>
                     <NavItem>
+                        <NavLink tag={Link} className="nav-link" to="/product">Products</NavLink>
+                    </NavItem>
+                    <NavItem>
                         <a onClick={this.Logout.bind(this)} href="#" className="nav-link">Logout</a>
                     </NavItem>
                 </Nav>

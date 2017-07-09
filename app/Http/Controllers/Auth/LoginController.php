@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
 class LoginController extends Controller
 {
     /*
@@ -31,6 +32,8 @@ class LoginController extends Controller
         if (Auth::attempt($request->all())) {
             // Authentication passed...
             return response(Auth::user(), 200);
+        } else {
+            return response([ 'error' => 'Invalid login credentials'], 401);
         }
     }
 

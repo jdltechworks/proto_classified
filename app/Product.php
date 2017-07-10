@@ -18,10 +18,6 @@ class Product extends Model
     $this->attributes['title'] = $value;
     $this->attributes['slug'] = str_slug($value);
   }
-  
-  public function setPasswordAttribute($pass) {
-    $this->attributes['password'] = Hash::make($pass);
-  }
 
   public function user()
   {

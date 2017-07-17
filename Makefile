@@ -2,9 +2,8 @@ setup:
 	composer install
 	cp .env.example .env
 	php artisan key:generate
-	yarn
+	yarn install
 	make authorize
-	npm run dev
 	make run
 
 authorize:

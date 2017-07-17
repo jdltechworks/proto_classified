@@ -14,6 +14,8 @@ import { reducer as form } from 'redux-form'
  * @type {Object}
  */
 const modules = {
+    Auth: require('./Auth'),
+    Product: require('./Product')
 }
 
 const initialActions = {

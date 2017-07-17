@@ -5,9 +5,11 @@ namespace App\Http\Requests\User;
 use App\User;
 use App\Mail\Verification;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class Request extends FormRequest
+class Registration extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -34,13 +36,17 @@ class Request extends FormRequest
     }
 
     public function persist() {
+        $code = str_random(30);
 
-        $user = User::create(
-            $this->only(['name', 'email', 'password'])
-        );
+        $user = new User;
+        $user->name = $this->input('name');
+        $user->email = $this->input('email');
+        $user->password = Hash::make($this->input('password'));
+        $user->confirmation_code = $code;
+        $user->save();
 
         auth()->login($user);
 
-        Mail::to($user)->send(new Verification($user));
+        Mail::to($user)->send(new Verification($user));
     }
 }

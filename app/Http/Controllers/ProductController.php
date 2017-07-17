@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::with(['user', 'categories'])->latest()->take(24)->get();
+        $products = Product::with(['images', 'user', 'categories'])->latest()->take(24)->get();
         $title = 'Products';
 
         if($request->wantsJson()) {
@@ -27,9 +27,6 @@ class ProductController extends Controller
         } else {
             return view('index');
         }
-        
-
-        
     }
 
     /**

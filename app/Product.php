@@ -40,6 +40,10 @@ class Product extends Model
     return $this->belongsToMany(Category::class);
   }
 
+  public function images()
+  {
+    return $this->hasMany(Upload::class);
+  }
   public function getRouteKeyName() {
     return 'slug';
   }

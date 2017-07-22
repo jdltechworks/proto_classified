@@ -25,7 +25,7 @@ class ProductController extends Controller
         if($request->wantsJson()) {
             return response(compact('title', 'products'), 200);
         } else {
-            return view('index');
+            return view('index', compact('title', 'products'));
         }
     }
 

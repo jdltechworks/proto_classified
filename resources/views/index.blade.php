@@ -9,12 +9,21 @@
         <link rel="stylesheet" href="{{mix('css/app.css')}}">
     </head>
     <body>
-    	<div id="app"> 
-        </div>
-        @yield('content')
-    <script>
-        var curr_user = "{{base64_encode(Auth::user())}}";
-    </script>
+        @if(Auth::user())
+        	<div id="app">
+                <app :user="{{Auth::user()}}"></app>
+            </div>
+        @else
+            @if(isset($products))
+                <div id="app">
+                    <app :initial-products="{{$products}}"></app>
+                </div>
+            @else
+                <div id="app">
+                    <app :initial-products="[]"></app>
+                </div>
+            @endif         
+        @endif        
     <script src={{mix('js/app.js')}}></script>
     </body>
 </html>

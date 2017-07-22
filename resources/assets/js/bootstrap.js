@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 var default_headers = new Headers()
 
 const csrfToken = document.getElementsByName('csrf-token')[0].content

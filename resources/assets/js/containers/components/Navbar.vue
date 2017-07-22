@@ -1,16 +1,18 @@
 <template>
-    <div class="container">
+    <div class="container grid-960 pt-10 pb-10">
         <header class="navbar">
           <section class="navbar-section">
-            <a href="#" class="btn btn-link">Docs</a>
-            <a href="#" class="btn btn-link">Examples</a>
-          </section>
-          <section class="navbar-center">
-            Pussy
+            <a href="#" class="navbar-brand mr-10">AWPI</a>
           </section>
           <section class="navbar-section">
-            <a href="#" class="btn btn-link">Twitter</a>
-            <a href="#" class="btn btn-link">GitHub</a>
+            <ul class="tab tab-block">
+              <li class="tab-item active">
+                <a href="#">Username</a>
+              </li>
+              <li class="tab-item">
+                <a href="#" class="">Product</a>
+              </li>
+            </ul>
           </section>
         </header>
     </div>

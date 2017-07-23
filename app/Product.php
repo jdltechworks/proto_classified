@@ -32,7 +32,7 @@ class Product extends Model
   public function scopeRelated($query, $keys, $id) {
     return $query->whereHas('categories', function ($query) use ($keys) {
       $query->whereIn('categories.id', $keys);
-    })->where('id', '<>', $id)->with('categories');
+    })->where('id', '<>', $id)->with('images', 'categories')->take(12);
   }
 
   public function categories() 

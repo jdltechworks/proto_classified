@@ -18,11 +18,16 @@
                 <div id="app">
                     <app :initial-products="{{$products}}"></app>
                 </div>
-            @else
+            @elseif(isset($product))
                 <div id="app">
-                    <app :initial-products="[]"></app>
+                    <app :product="{{$product}}" :related="{{$related}}"></app>
                 </div>
-            @endif         
+            @else
+                 <div id="app">
+                    <app></app>
+                </div>               
+            @endif
+
         @endif        
     <script src={{mix('js/app.js')}}></script>
     </body>

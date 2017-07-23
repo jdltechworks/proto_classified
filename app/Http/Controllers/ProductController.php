@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::with(['images', 'user', 'categories'])->latest()->take(24)->get();
+        $products = Product::with(['images', 'user', 'categories'])->latest()->take(12)->get();
         $title = 'Products';
 
         if($request->wantsJson()) {
@@ -60,8 +60,14 @@ class ProductController extends Controller
     {   
         $keys = $product->categories->modelKeys();
         $related = $product->related($keys, $product->id)->get();
-        return response(compact('product', 'related'), 200);
-        
+        $product->images;
+        $product->comments;
+        $product->user;
+        if($request->wantsJson()) {
+            return response(compact('product', 'related'), 200);
+        } else {
+            return view('index',compact('product', 'related'));
+        }
     }
 
     /**

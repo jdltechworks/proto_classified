@@ -29,8 +29,13 @@ export default class Product extends Component {
                     <h4>{title ? title : null }</h4>
                     <ul>
                         {map(products, (product, key) => {
+                            const { images } = product
                             return (
                                 <li key={key}>
+                                        {map(images, (image, key) => {
+                                            const { filename } = image
+                                            return <img src={filename} />
+                                        })}
                                         <p><Link to={`/product/${product.slug}`}>{ product.title }</Link></p>
                                         <p>{product.description}</p>
                                         <p>{ JSON.stringify(product.categories) }</p>

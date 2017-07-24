@@ -49,6 +49,15 @@ $factory->define(App\Comment::class, function(Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Upload::class, function(Faker\Generator $faker) {
+    return [
+        'filename' => $faker->imageUrl(1200, 742, 'cats', true, 'Faker'),
+        'product_id' => function() {
+            return rand(1, App\Product::count());
+        }
+    ];
+});
+
 $factory->define(App\Category::class, function(Faker\Generator $faker) {
     return [
         'name' => $faker->unique()->word

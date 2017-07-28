@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +13,7 @@ class Product extends Model
     'description',
     'price'
   ];
-  
+
   public function setTitleAttribute($value) {
     $this->attributes['title'] = $value;
     $this->attributes['slug'] = str_slug($value);
@@ -35,7 +35,11 @@ class Product extends Model
     })->where('id', '<>', $id)->with('images', 'categories')->take(12);
   }
 
-  public function categories() 
+  public function scopeCollection($query) {
+    return $query->with(['images', 'user', 'categories'])->latest();
+  }
+
+  public function categories()
   {
     return $this->belongsToMany(Category::class);
   }
@@ -47,5 +51,5 @@ class Product extends Model
   public function getRouteKeyName() {
     return 'slug';
   }
-  
+
 }

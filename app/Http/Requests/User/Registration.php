@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\User;
 
-use App\User;
+use App\Models\User;
 use App\Mail\Verification;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;

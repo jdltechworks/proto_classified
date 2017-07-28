@@ -12,6 +12,7 @@
   "dependencies": {
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
+    "loaders.css": "^0.1.2",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "vee-validate": "^2.0.0-rc.7"

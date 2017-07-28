@@ -11,6 +11,6 @@ class UploadsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Upload::class, 1000)->create();
+        factory(App\Models\Upload::class, 1500)->create();
     }
 }

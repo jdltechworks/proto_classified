@@ -1,13 +1,9 @@
 <template>
-    <div class="products container grid-960">
-        <div class="input-group mt-10 pt-10 mb-10 pt-10">
-          <input type="text" class="form-input" placeholder="Search" />
-          <button class="btn btn-primary input-group-btn"><i class="icon icon-location"></i></button>
-          <button class="btn btn-primary input-group-btn"><i class="icon icon-search"></i></button>
-        </div>
-
-        <div v-for="row in loadedProducts" class="columns mt-10 pt-10">
-            <div v-for="product in row" class="column col-3 col-sm-12">
+    <div class="product-related">
+        <p class="pt-10 mt-10">You might also like</p>
+        <div class="divider"></div>
+        <div v-for="row in relatedProducts" class="columns mt-10 pt-10">
+            <div v-for="product in row" class="column col-6 col-sm-12">
                 <div class="card">
                     <a :href="/product/ + product.slug">
                         <div v-if="index === 0" 
@@ -30,19 +26,8 @@
 </template>
 
 <script>
-    import chunk from 'lodash/chunk'
     export default {
-        name: 'products',
-        props: ['collection'],
-        data() {
-            return {
-                products: this.collection
-            }
-        },
-        computed: {
-            loadedProducts() {
-                return chunk(this.products, 4)
-            }
-        }
+        name: 'related',
+        props: ['relatedProducts']
     }
 </script>

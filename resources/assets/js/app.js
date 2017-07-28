@@ -24,5 +24,6 @@ sync(store, router)
 new Vue({
   store,
   router,
+  props: ['csrfToken', 'collection'],
   components: { App }
 }).$mount('#app')

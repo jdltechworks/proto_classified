@@ -35,6 +35,10 @@ class Product extends Model
     })->where('id', '<>', $id)->with('images', 'categories')->take(12);
   }
 
+  public function scopeInitial($query) {
+    return $query->with(['images', 'user', 'categories'])->latest();
+  }
+
   public function categories() 
   {
     return $this->belongsToMany(Category::class);

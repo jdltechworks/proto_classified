@@ -5,15 +5,15 @@
             <button @click.prevent="toggle" class="btn btn-primary input-group-btn"><i class="icon icon-location"></i></button>
             <button class="btn btn-primary input-group-btn"><i class="icon icon-search"></i></button>
         </div>
-    <transition name="slide">
-        <div v-if="isOpen" class="columns">
-            <div class="column col-12">
-                <div class="panel">
-                    Pussy!
+        <transition name="slide">
+            <div v-if="isOpen" class="columns">
+                <div class="column col-12">
+                    <div class="panel">
+                        Pussy!
+                    </div>
                 </div>
             </div>
-        </div>
-    </transition>
+        </transition>
     </form>
 </template>
 

@@ -19,13 +19,13 @@ class ProductController extends Controller
      */
     public function index(Product $products, Request $request)
     {
-        $collection;
+        $collection = $products->collection()->take(24);
 
         if(!$request->all()) {
-            $collection = $products->collection()->take(24)->get();
+            $collection = $collection->get();
         } else {
             $skip = $request->skip;
-            $collection = $products->collection()->take(24)->skip($skip)->get();
+            $collection = $collection->skip($skip)->get();
         }
 
         if($request->wantsJson()) {

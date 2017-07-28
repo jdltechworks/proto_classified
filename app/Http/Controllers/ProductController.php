@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
-use App\Category;
+use App\Models\Product;
+use App\Models\Category;
 
 use Illuminate\Http\Request;
 
@@ -19,7 +19,14 @@ class ProductController extends Controller
      */
     public function index(Product $products, Request $request)
     {
-        $collection = $products->initial()->take(12)->get();
+        $collection;
+
+        if(!$request->all()) {
+            $collection = $products->collection()->take(24)->get();
+        } else {
+            $skip = $request->skip;
+            $collection = $products->collection()->take(24)->skip($skip)->get();
+        }
 
         if($request->wantsJson()) {
             return response(compact('collection'), 200);
@@ -56,15 +63,15 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Product $product, Request $request)
-    {   
+    {
         $product->user;
         $product->images;
         $product->comments;
         $keys = $product->categories->modelKeys();
-        $related = $product->related($keys, $product->id)->get();   
+        $related = $product->related($keys, $product->id)->get();
 
         $collection = collect(['product' => $product, 'related' => $related]);
-        
+
         if($request->wantsJson()) {
             return response(compact('collection'), 200);
         } else {

@@ -2,20 +2,7 @@
     <div class="product container grid-960">
         <div class="columns">
             <div class="column col-8 col-sm-12">
-                <div class="carousel">
-                    <input type="radio" :id="index" name="carousel-radio" 
-                        v-for="(image, index) in product.images" 
-                        class="carousel-locator" hidden :checked="index === 0" />
-                    <div class="carousel-container">
-                        <figure class="carousel-item" v-for="(image, index) in product.images">
-                            <img :src="image.filename" class="img-responsive" />
-                        </figure>
-                    </div>
-                    <div class="carousel-nav">
-                        <label v-for="(image, index) in product.images" class="nav-item text-hide hand" :for="index">
-                        </label>
-                    </div>
-                </div>
+                <carousel :images="product.images"></carousel>
                 <div class="panel">
                     <div class="panel-header">
                     </div>
@@ -46,6 +33,7 @@
 
 <script>
     import chunk from 'lodash/chunk'
+    import Carousel from './components/carousel'
     import Related from './components/related'
     import Owner from './components/owner'
     import Comments from './components/comments'
@@ -55,6 +43,7 @@
             'collection'
         ],
         components: {
+            Carousel,
             Comments,
             Owner,
             Related

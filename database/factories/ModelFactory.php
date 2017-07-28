@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -23,42 +23,42 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Product::class, function (Faker\Generator $faker) {
-    
+$factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
+
     return [
         'title' => $faker->words(3, true),
         'description' => $faker->realText,
         'price' => $faker->randomFloat,
         'user_id' => function() {
-            return rand(1, App\User::count());
+            return rand(1, App\Models\User::count());
         }
     ];
 });
 
-$factory->define(App\Comment::class, function(Faker\Generator $faker) {
-    
+$factory->define(App\Models\Comment::class, function(Faker\Generator $faker) {
+
     return [
         'title' => $faker->words(3, true),
         'body' => $faker->realText,
         'user_id' => function() {
-            return rand(1, App\User::count());
+            return rand(1, App\Models\User::count());
         },
         'product_id' => function() {
-            return rand(1, App\Product::count());
+            return rand(1, App\Models\Product::count());
         }
     ];
 });
 
-$factory->define(App\Upload::class, function(Faker\Generator $faker) {
+$factory->define(App\Models\Upload::class, function(Faker\Generator $faker) {
     return [
-        'filename' => $faker->imageUrl(1200, 742, 'cats', true, 'Faker'),
+        'filename' => $faker->imageUrl(1200, 742, 'food', true, 'Faker'),
         'product_id' => function() {
-            return rand(1, App\Product::count());
+            return rand(1, App\Models\Product::count());
         }
     ];
 });
 
-$factory->define(App\Category::class, function(Faker\Generator $faker) {
+$factory->define(App\Models\Category::class, function(Faker\Generator $faker) {
     return [
         'name' => $faker->unique()->word
     ];

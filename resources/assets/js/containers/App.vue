@@ -8,7 +8,7 @@
 import Navbar from './components/Navbar'
     export default {
         name: 'app',
-        props: ['collection','csrfToken'],
+        props: ['collection','csrf'],
         components: {
             Navbar
         }

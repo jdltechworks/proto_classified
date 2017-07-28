@@ -9,11 +9,11 @@
     <body>
         @if(isset($collection))
             <div id="app">
-                <app :collection="{{$collection}}" 
-                    :csrf-token="{{json_encode([ 'csrf_token' => csrf_token() ])}}">
+                <app :collection="{{$collection}}"
+                    :csrf="{{json_encode([ 'token' => csrf_token() ])}}">
                 </app>
             </div>
         @endif
-    <script src={{mix('js/app.js')}}></script>
+        <script src={{mix('js/app.js')}}></script>
     </body>
 </html>

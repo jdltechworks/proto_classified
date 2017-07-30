@@ -14,5 +14,6 @@
 Auth::routes();
 
 Route::resource('product', 'ProductController');
+Route::resource('/region', 'RegionController');
 
 Route::get('/{path?}', 'HomeController@index');

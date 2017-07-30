@@ -59,6 +59,7 @@
     </div>
 </template>
 <script>
+
 export default {
     name: 'login',
     //default form values
@@ -71,7 +72,7 @@ export default {
     },
     methods: {
         login(values) {
-            console.log(values)
+
         },
 
         changeSection() {

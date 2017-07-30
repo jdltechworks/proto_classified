@@ -11,7 +11,14 @@
 |
 */
 
-Auth::routes();
+// Auth routes
+Route::group([
+    'namespace' => 'Auth',
+    'prefix' => 'auth'
+], function() {
+    Route::get('', 'IndexController@index')->name('auth.index');
+});
+
 
 Route::resource('product', 'ProductController');
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
-use App\Category;
+use App\Models\Product;
+use App\Models\Category;
 
 use Illuminate\Http\Request;
 
@@ -17,19 +17,22 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Product $products, Request $request)
     {
-        $products = Product::with(['user', 'categories'])->latest()->take(24)->get();
-        $title = 'Products';
+        $collection = $products->collection()->take(24);
+
+        if(!$request->all()) {
+            $collection = $collection->get();
+        } else {
+            $skip = $request->skip;
+            $collection = $collection->skip($skip)->get();
+        }
 
         if($request->wantsJson()) {
-            return response(compact('title', 'products'), 200);
+            return response(compact('collection'), 200);
         } else {
-            return view('index');
+            return view('index', compact('collection'));
         }
-        
-
-        
     }
 
     /**
@@ -60,11 +63,20 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Product $product, Request $request)
-    {   
+    {
+        $product->user;
+        $product->images;
+        $product->comments;
         $keys = $product->categories->modelKeys();
         $related = $product->related($keys, $product->id)->get();
-        return response(compact('product', 'related'), 200);
-        
+
+        $collection = collect(['product' => $product, 'related' => $related]);
+
+        if($request->wantsJson()) {
+            return response(compact('collection'), 200);
+        } else {
+            return view('index', compact('collection'));
+        }
     }
 
     /**
@@ -75,7 +87,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('index');
     }
 
     /**

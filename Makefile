@@ -16,7 +16,7 @@ authorize:
 	php artisan cache:clear
 
 run:
-	php artisan serve &
+	php artisan serve --host=local.classified.dev &
 	npm run hot &
 
 rebase:

@@ -13,6 +13,8 @@
                     :csrf="{{json_encode([ 'token' => csrf_token() ])}}">
                 </app>
             </div>
+        @else
+            @yield('content')
         @endif
         <script src={{mix('js/app.js')}}></script>
     </body>

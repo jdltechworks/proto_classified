@@ -1,6 +1,6 @@
 <template>
     <div class="products container grid-960">
-        <search :updateCollection="updateCollection"></search>
+        <search :clearCollection="clearCollection" :restoreCollection="restoreCollection"></search>
         <div v-for="row in productAll" class="columns mt-10 pt-10">
             <div v-for="product in row" class="column col-3 col-sm-12">
                 <div class="card">
@@ -31,6 +31,7 @@
     import chunk from 'lodash/chunk'
     import isEmpty from 'lodash/isEmpty'
     import map from 'lodash/map'
+    import debounce from 'lodash/debounce'
     import Photo from './components/photo'
     import Search from './components/search'
 
@@ -41,7 +42,6 @@
         data() {
             return {
                 products: this.collection,
-                scrolled: false,
                 take: 0,
                 isFetching: false
             }
@@ -58,8 +58,6 @@
         methods: {
             scrollObserver () {
                 const base = this.$el
-                const host = location.host
-                const protocol = location.protocol
                 const baseOffset = base.offsetHeight
                 const windowOffset = window.pageYOffset + window.innerHeight
 
@@ -67,33 +65,44 @@
 
                 if(windowOffset >= baseOffset) {
                     this.isFetching = true
-                    const increment = this.take += this.collection.length
-
-                    const headers = new Headers({
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json'
-                    })
-
-                    const url = new URL(`${protocol}//${host}/product`)
-                    const params = { take: increment, skip: increment }
-
-                    map(params, (value, key) => {
-                        url.searchParams.append(key, value)
-                    })
-
-                    fetch(url, {
-                        method: 'GET',
-                        headers,
-                    }).then(res => {
-                        return res.json()
-                    }).then(({ collection }) => {
-
-                        this.products = [].concat(this.products, collection)
-                    }).catch(err => console.log(err))
-                }
+                    this.updateCollection()               }
             },
-            updateCollection() {
+            updateCollection: debounce(function() {
+                const host = location.host
+                const protocol = location.protocol
+                const increment = this.take += this.collection.length
+                
 
+
+                const headers = new Headers({
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                })
+
+                const url = new URL(`${protocol}//${host}/product`)
+                const params = { take: increment, skip: increment }
+
+                map(params, (value, key) => {
+                    url.searchParams.append(key, value)
+                })
+
+                fetch(url, {
+                    method: 'GET',
+                    headers,
+                }).then(res => {
+                    return res.json()
+                }).then(({ collection }) => {
+                    if(isEmpty(collection)) {
+                        this.isFetching = false
+                    }
+                    this.products = [].concat(this.products, collection)
+                }).catch(err => console.log(err))
+            }, 1000, { maxWait: 2000 }),
+            clearCollection() {
+                this.products = [];
+            },
+            restoreCollection() {
+                this.products = this.collection
             }
         },
         created () {
@@ -104,3 +113,9 @@
         }
     }
 </script>
+
+<style lang="less" scoped>
+    .products {
+        padding-top: 3rem;
+    }
+</style>

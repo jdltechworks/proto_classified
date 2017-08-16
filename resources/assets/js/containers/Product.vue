@@ -9,7 +9,7 @@
                     <div class="panel-body">
                         <div class="tile">
                           <div class="tile-content">
-                            <p class="tile-title">{{product.title}}</p>
+                            <p class="tile-title text-capitalize text-bold">{{product.title}}</p>
                             <p class="tile-subtitle">{{product.description}}</p>
                           </div>
                           <div class="tile-action">

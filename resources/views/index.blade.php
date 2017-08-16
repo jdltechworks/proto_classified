@@ -16,6 +16,7 @@
         @else
             @yield('content')
         @endif
+        <script src={{mix('js/pace.min.js')}}></script>
         <script src={{mix('js/app.js')}}></script>
     </body>
 </html>

@@ -7,7 +7,6 @@ import routes from './routes'
 import { sync } from 'vuex-router-sync'
 import VeeValidate from 'vee-validate'
 
-
 Vue.use(VueRouter)
 Vue.use(VeeValidate)
 

@@ -14,5 +14,6 @@
 Route::get('/auth', 'Auth\LoginController@showLoginForm')->name('auth.login');
 
 Route::resource('product', 'ProductController');
+Route::resource('/region', 'RegionController');
 
 Route::get('/{path?}', 'HomeController@index');

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/auth', 'Auth\LoginController@showLoginForm')->name('auth.login');
+Auth::routes();
 
 Route::resource('product', 'ProductController');
 Route::resource('/region', 'RegionController');

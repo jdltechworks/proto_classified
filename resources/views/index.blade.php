@@ -8,13 +8,16 @@
     </head>
     <body>
         @if(isset($collection))
-            <div id="app">
+            <div id="main">
                 <app :collection="{{$collection}}"
                     :csrf="{{json_encode([ 'token' => csrf_token() ])}}">
                 </app>
             </div>
         @else
-            @yield('content')
+            <div id="main">
+                <app :csrf="{{json_encode([ 'token' => csrf_token() ])}}">
+                </app>
+            </div>            
         @endif
         <script src={{mix('js/pace.min.js')}}></script>
         <script src={{mix('js/app.js')}}></script>

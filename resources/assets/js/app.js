@@ -24,4 +24,4 @@ new Vue({
   store,
   router,
   components: { App }
-}).$mount('#app')
+}).$mount('#main')

@@ -69,16 +69,3 @@
         }
     }
 </script>
-
-<style scoped>
-    .regions {
-        max-height: 375px;
-        overflow-y: auto;
-        position: absolute;
-        background: #fff;
-        z-index: -4;
-    }
-    .ball-clip-rotate-multiple > div {
-        background: #5764c6;
-    }
-</style>

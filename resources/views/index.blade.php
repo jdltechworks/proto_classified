@@ -7,19 +7,24 @@
         <link rel="stylesheet" href="{{mix('css/app.css')}}">
     </head>
     <body>
-        @if(isset($collection))
-            <div id="main">
-                <app :collection="{{$collection}}"
-                    :csrf="{{json_encode([ 'token' => csrf_token() ])}}">
-                </app>
-            </div>
-        @else
-            <div id="main">
-                <app :csrf="{{json_encode([ 'token' => csrf_token() ])}}">
-                </app>
-            </div>            
-        @endif
         <script src={{mix('js/pace.min.js')}}></script>
         <script src={{mix('js/app.js')}}></script>
+        <div id="main"></div>
+        @if(isset($collection))
+            <script>
+                const props = {
+                  collection: {!!$collection!!},
+                  csrf_token: "{{csrf_token()}}"
+                }
+                app(props, 'main')
+            </script>
+        @else
+          <script>
+            const props = {
+              csrf_token: "{{csrf_token()}}"
+            }
+            app(props, 'main')
+          </script>
+        @endif
     </body>
 </html>

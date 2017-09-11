@@ -1,21 +1,41 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import auth from './modules/Auth'
-import product from './modules/Product'
+import modules from '../modules'
+import thunkMiddleware from 'redux-thunk'
+import { createStore, compose, applyMiddleware } from 'redux'
+import { createApiMiddleware } from 'redux-module-builder/api'
+import { bindActionCreatorsToStore } from 'redux-module-builder'
+import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
 
-Vue.use(Vuex)
 
-const debug = process.env.NODE_ENV !== 'production'
+const { reducers, actions, initialState } = modules()
 
-export default new Vuex.Store({
-  state: {
-    a: '',
-    b: []
-  },
-  getters: {},
-  modules: {
-    auth,
-    product
-  },
-  strict: debug
-})
+let middlewares = [
+    thunkMiddleware
+]
+
+const creator = (composer) => {
+  if(composer) return composer
+  return compose
+}
+
+const setHistoryType = (historyType, request) => {
+  if(!request) return historyType
+
+  return historyType(request.url)
+}
+export default (historyType, composer, request) => {
+    middlewares.push(
+        routerMiddleware(historyType)
+    )
+
+    const create = creator(composer)
+    const history = setHistoryType(historyType, request)
+    let composeStore = create(
+        applyMiddleware(...middlewares),
+    )(createStore)
+    const store = composeStore(reducers, initialState)
+    return {
+        history: syncHistoryWithStore(history, store),
+        store,
+        actions: bindActionCreatorsToStore(actions, store)
+    }
+}

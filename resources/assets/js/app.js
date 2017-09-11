@@ -1,27 +1,12 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import VueX from 'vuex'
-import App from './containers/App'
-import store from './store'
-import routes from './routes'
-import { sync } from 'vuex-router-sync'
-import VeeValidate from 'vee-validate'
+import { render } from 'react-dom'
+import React, { Component } from 'react'
+import ClientProvider from './provider/Client'
 
-Vue.use(VueRouter)
-Vue.use(VeeValidate)
+const app = (props, target) => {
+  console.log(props)
+  console.log(target)
+  //get initial props / redux state
+  render(<ClientProvider {...props} />, document.getElementById(target))
+}
 
-
-
-const router = new VueRouter({
-  mode: 'history',
-  base: __dirname,
-  routes
-})
-
-sync(store, router)
-
-new Vue({
-  store,
-  router,
-  components: { App }
-}).$mount('#main')
+window.app = app

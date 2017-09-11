@@ -1,16 +1,22 @@
 .search-box {
-    position: fixed;
+    position: relative;
     width: 100%;
+    .container {
+        padding: 25px 0;
+    }
+}
+.search-box.scrolled {
+    position: fixed;
+    top: 0%;
     left: 0;
     right: 0;
     z-index: 100;
-    top: 65px;
-}
-.search-box.scrolled {
-    top: 0%;
     padding: 10px 0;
     background: #fff;
     border-bottom: 1px solid #eee;
+    .container {
+        padding: 0 .4rem
+    }
 }
 .location {
     background: #fff;

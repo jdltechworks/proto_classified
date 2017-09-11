@@ -5,14 +5,15 @@ import { Link } from 'react-router'
 import chunk from 'lodash/chunk'
 import Search from '../components/Search'
 import ImagePreloader from '../components/Loaders/Image'
-export default class Product extends Component {
+import Scroller from '../components/Scroller'
 
+class Product extends Component {
     render() {
         const { props } = this
         const { collection } = props
         const groupedCollection = chunk(collection, 4)
         return(
-            <div className="products container grid-lg">
+            <Scroller>
                 <Search {...props} />
                 {map(groupedCollection, (collection, key) => {
                   return(
@@ -37,7 +38,9 @@ export default class Product extends Component {
                     </div>
                   )
                 })}
-            </div>
+            </Scroller>
         )
     }
 }
+
+export default Product

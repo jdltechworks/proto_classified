@@ -14,8 +14,10 @@
             <script>
                 const props = {
                   collection: {!!$collection!!},
-                  csrf_token: "{{csrf_token()}}"
+                  csrf_token: "{{csrf_token()}}",
+                  url: "{{url('/')}}"
                 }
+                console.log(props)
                 app(props, 'main')
             </script>
         @else

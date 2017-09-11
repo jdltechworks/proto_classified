@@ -23,7 +23,7 @@ export const types = createConstants('product')(
 )
 
 export const actions = {
-    getProducts() {
+    getProducts(skip) {
         const headers = new Headers({
             Accept: 'application/json',
             'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ export const actions = {
                 dispatch({ type: types.FETCHED_SINGLE, json })
             })
             .catch(error => dispatch({ type: types.ERROR, error }))
-        }       
+        }
     }
 }
 

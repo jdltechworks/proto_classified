@@ -52,6 +52,7 @@ export const actions = {
         return (dispatch, getState) => {
 
             dispatch({ type: types.CHECK })
+            
             if(!isEmpty(curr_user)) {
                 dispatch({
                     type: types.IS_AUTHENITCATED,
@@ -70,8 +71,6 @@ export const actions = {
                     dispatch(push('/login'))
                 }
             }
-
-
         }
     },
     signup(props) {

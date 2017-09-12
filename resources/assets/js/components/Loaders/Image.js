@@ -4,7 +4,7 @@ export default class ImageLoader extends Component {
     preloader(image) {
         let { props } = this
         let { src } = props
-        let loader = image.previousSibling
+        let loader = image ? image.previousSibling : null
         if( image !== null ) {
             if( src ) {
                 image.style.display = 'none'

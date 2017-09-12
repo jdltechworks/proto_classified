@@ -8,12 +8,21 @@ import ImagePreloader from '../components/Loaders/Image'
 import Scroller from '../components/Scroller'
 
 class Product extends Component {
+    componentDidMount() {
+        const { props } = this
+        const { actions, collection } = props
+        actions.Product.setProducts(collection)
+    }
     render() {
         const { props } = this
-        const { collection } = props
+        const {
+            Product: { collection },
+            actions: { Product },
+            url } = props
+
         const groupedCollection = chunk(collection, 4)
         return(
-            <Scroller>
+            <Scroller more={Product.more} url={url} take={collection.length}>
                 <Search {...props} />
                 {map(groupedCollection, (collection, key) => {
                   return(

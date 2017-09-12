@@ -11,7 +11,8 @@ export const initialState = {
         products: []
     },
     isFetching: false,
-    error: {}
+    error: {},
+    collection: []
 }
 
 export const types = createConstants('product')(
@@ -19,8 +20,12 @@ export const types = createConstants('product')(
     'FETCHED',
     'ERROR',
     'FETCHING_SINGLE',
-    'FETCHING_SINGLE'
+    'FETCHING_SINGLE',
+    'SCROLLED',
+    'INITITAL_COLLECTION'
 )
+
+let increment = 0
 
 export const actions = {
     getProducts(skip) {
@@ -40,6 +45,42 @@ export const actions = {
             })
             .catch(error => dispatch({ type: types.ERROR, error }))
         }
+    },
+    setProducts(currCollection) {
+        return (dispatch, getState) => {
+            let { Product: { collection } } = getState()
+            return dispatch({
+                type: types.INITITAL_COLLECTION,
+                collection: [].concat(currCollection)
+            })
+        }
+    },
+    more(url, take) {
+        const headers = new Headers({
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        })
+        const _url = new URL(`${url}/product`)
+        const params = { take: 25, skip: take += take }
+
+        map(params, (value, key) => {
+            _url.searchParams.append(key, value)
+        })
+
+        return (dispatch, getState) => {
+            return fetch(_url, {
+                method: 'GET',
+                headers,
+                credentials: 'same-origin'
+            }).then(res => {
+                if(res.ok) return res.json()
+                throw new Error('Error')
+            }).then(json => {
+                let { Product: { collection } } = getState()
+                dispatch({ type: types.SCROLLED, collection: [].concat(collection, json) })
+            })
+        }
+
     },
     getProduct(id) {
         const headers = new Headers({
@@ -62,11 +103,19 @@ export const actions = {
 }
 
 export const reducer = createReducer({
+    [types.INITITAL_COLLECTION]: (state, { collection }) => {
+        console.log(collection)
+        return {...state, collection}
+    },
     [types.FETCHED]: (state, { list }) => {
         return { ...state, list }
     },
     [types.ERROR]: (state, { error }) => {
         return { ...state, ...error }
+    },
+    [types.SCROLLED]: (state, { collection }) => {
+        console.log(collection)
+        return { ...state, collection }
     },
     [types.FETCHED_SINGLE]: (state, { json }) => {
         return { ...state, ...json }

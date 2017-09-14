@@ -6,10 +6,7 @@ import includes from 'lodash/includes'
 import { push } from 'react-router-redux'
 
 export const initialState = {
-    list: {
-        title: null,
-        products: []
-    },
+    list: [],
     isFetching: false,
     error: {},
     collection: []
@@ -28,30 +25,13 @@ export const types = createConstants('product')(
 let increment = 0
 
 export const actions = {
-    getProducts(skip) {
-        const headers = new Headers({
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        })
-        return (dispatch, getState) => {
-            dispatch({ type: types.FETCHING })
-            return fetch('/product', {
-                method: 'GET',
-                headers,
-                credentials: 'same-origin',
-            }).then(res => res.json())
-            .then(list => {
-                dispatch({ type: types.FETCHED, list })
-            })
-            .catch(error => dispatch({ type: types.ERROR, error }))
-        }
-    },
     setProducts(currCollection) {
         return (dispatch, getState) => {
-            let { Product: { collection } } = getState()
+            let { Product: { list } } = getState()
+            console.log(list)
             return dispatch({
                 type: types.INITITAL_COLLECTION,
-                collection: [].concat(currCollection)
+                list: list.concat(currCollection)
             })
         }
     },
@@ -61,7 +41,8 @@ export const actions = {
             'Content-Type': 'application/json'
         })
         const _url = new URL(`${url}/product`)
-        const params = { take: 25, skip: take += take }
+
+        const params = { skip: take += take }
 
         map(params, (value, key) => {
             _url.searchParams.append(key, value)
@@ -75,9 +56,9 @@ export const actions = {
             }).then(res => {
                 if(res.ok) return res.json()
                 throw new Error('Error')
-            }).then(json => {
-                let { Product: { collection } } = getState()
-                dispatch({ type: types.SCROLLED, collection: [].concat(collection, json) })
+            }).then(({ collection }) => {
+                const { Product: { list } } = getState()
+                dispatch({ type: types.SCROLLED, list: list.concat(collection) })
             })
         }
 
@@ -103,9 +84,8 @@ export const actions = {
 }
 
 export const reducer = createReducer({
-    [types.INITITAL_COLLECTION]: (state, { collection }) => {
-        console.log(collection)
-        return {...state, collection}
+    [types.INITITAL_COLLECTION]: (state, { list }) => {
+        return {...state, list}
     },
     [types.FETCHED]: (state, { list }) => {
         return { ...state, list }
@@ -113,9 +93,9 @@ export const reducer = createReducer({
     [types.ERROR]: (state, { error }) => {
         return { ...state, ...error }
     },
-    [types.SCROLLED]: (state, { collection }) => {
-        console.log(collection)
-        return { ...state, collection }
+    [types.SCROLLED]: (state, { list }) => {
+        console.log(state.list)
+        return { ...state, list }
     },
     [types.FETCHED_SINGLE]: (state, { json }) => {
         return { ...state, ...json }

@@ -16,13 +16,13 @@ class Product extends Component {
     render() {
         const { props } = this
         const {
-            Product: { collection },
+            Product: { list },
             actions: { Product },
             url } = props
 
-        const groupedCollection = chunk(collection, 4)
+        const groupedCollection = chunk(list, 4)
         return(
-            <Scroller more={Product.more} url={url} take={collection.length}>
+            <Scroller more={Product.more} url={url} take={list.length}>
                 <Search {...props} />
                 {map(groupedCollection, (collection, key) => {
                   return(

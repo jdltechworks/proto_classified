@@ -18,12 +18,11 @@ export default class Search extends Component {
     render() {
         return(
             <div ref="searchBox" className="search-box">
-                <div className="container grid-lg">
+                <div className="container grid-xl">
                     <form>
                         <div className="input-group">
                             <input type="text" className="form-input" placeholder="Search" />
                             <button className="btn btn-primary input-group-btn"><i className="icon icon-location"></i></button>
-                            <button className="btn btn-primary input-group-btn"><i className="icon icon-more-vert"></i></button>
                             <button className="btn btn-primary input-group-btn"><i className="icon icon-search"></i></button>
                         </div>
                     </form>

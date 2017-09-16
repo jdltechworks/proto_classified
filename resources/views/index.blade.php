@@ -7,9 +7,9 @@
         <link rel="stylesheet" href="{{mix('css/app.css')}}">
     </head>
     <body>
+        <div id="main"></div>
         <script src={{mix('js/pace.min.js')}}></script>
         <script src={{mix('js/app.js')}}></script>
-        <div id="main"></div>
         @if(isset($collection))
             <script>
                 const props = {

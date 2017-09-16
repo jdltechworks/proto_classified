@@ -14,16 +14,16 @@ export default class Navigation extends Component {
         const { props, state, toggle } = this
         const { isOpen } = state
         return(
-          <header className="navbar container navbar-container grid-lg">
-            <section className="navbar-section">
-              <a href="#" className="btn btn-link">Docs</a>
-              <a href="#" className="btn btn-link">Examples</a>
-            </section>
-            <section className="navbar-section">
-              <a href="#" className="btn btn-link">Twitter</a>
-              <a href="#" className="btn btn-link">GitHub</a>
-            </section>
-          </header>
+            <header className="navbar grid-xl container navbar-container">
+              <section className="navbar-section">
+                <a href="#" className="btn btn-link">Docs</a>
+                <a href="#" className="btn btn-link">Examples</a>
+              </section>
+              <section className="navbar-section">
+                <a href="#" className="btn btn-link">Twitter</a>
+                <a href="#" className="btn btn-link">GitHub</a>
+              </section>
+            </header>
         )
     }
 }

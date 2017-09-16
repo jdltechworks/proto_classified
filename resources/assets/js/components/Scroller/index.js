@@ -52,7 +52,7 @@ class Scroller extends Component {
     }
     render() {
         return(
-            <div ref="container" className="container grid-lg scoller">
+            <div ref="container" className="container grid-xl scoller">
                 {this.props.children}
             </div>
         )
